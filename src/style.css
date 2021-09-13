@@ -1,0 +1,46 @@
+/* para chamar a variavel da cor use var(--nome-dacor); */
+.body{
+    margin: 0;
+    padding: 0;
+    font-family: "Montserrat", sans-serif;
+}
+:root,
+#root {
+  --extra-lightblue: rgba(74, 159, 233, 0.562);
+  --light-blue: rgba(74, 158, 233, 0.8);
+  --normal-blue: #3075b3;
+  --green-green: #6aa06b;
+  --grey-grey: #c1c1c1;
+  --black-black: #000;
+  --white-white: #fff;
+  --shadow-btn: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
+    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+  --shadow-btnClick: rgb(204, 219, 232) 3px 3px 6px 0px inset,
+    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+}
+button {
+  font-family: "Montserrat", sans-serif;
+  border: none;
+  border-radius: 10px;
+  box-shadow: var(--shadow-btn);
+  background-color: var(--grey-grey);
+  width: 15%;
+  padding: 1%;
+  font-size: 100%;
+}
+.btnConfirm {
+ background-color: var(--green-green);
+}
+.btnInsideTable{
+ background-color: var(--normal-blue);
+}
+.btnBack{
+display: flex;
+align-items: center;
+justify-content: center;
+width: 8%;
+}
+.btnDrop{
+ border-radius: 0;
+}
+
