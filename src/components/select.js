@@ -1,12 +1,12 @@
 import React from "react";
 
-export function Select({ selectId, selectClassName, selectPlaceHolder }) {
+export function Select({ selectId, selectClassName, selectPlaceHolder, selectOptions}) {
   return (
     <select
       id={selectId}
       className={selectClassName}
       placeholder={selectPlaceHolder}
-    ></select>
+    >{selectOptions}</select>
   );
 }
 
