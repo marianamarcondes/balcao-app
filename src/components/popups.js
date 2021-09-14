@@ -9,7 +9,8 @@ export default function PopUpWelcome() {
         como é seu primeiro acesso, escolha uma senha definitiva:
       </p>
       <p className='passInfo'>6 dígitos númericos</p>
-      <input type='number' placeholder=' * * * * * * ' />
+      {/* input aqui */}
+      <input type='number' placeholder=' * * * * * * ' /> 
       <ButtonCancel
         btnClassName='cancelPopup'
         //   btnAction = {} aqui chama a função do botão
@@ -87,22 +88,3 @@ export function PopUpAdd() {
     </div>
   );
 };
-
-//     confirmBtn.addEventListener('click', () => {
-//       modalBackground.style.display = 'none';
-//       callback();
-//     });
-
-//     closeBtn.addEventListener('click', () => {
-//       modalBackground.style.display = 'none';
-//     });
-
-//     noBtn.addEventListener('click', () => {
-//       modalBackground.style.display = 'none';
-//     });
-
-//     window.addEventListener('click', (event) => {
-//       if (event.target === modalBackground) {
-//         modalBackground.style.display = 'none';
-//       }
-//     })

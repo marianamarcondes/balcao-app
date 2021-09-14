@@ -66,9 +66,9 @@ export function ButtonDrop({
   btnClassName,
   btnType,
   btnAction,
-  menuType,
+  description,
   imgBtnDrop,
-  btnImg,
+  btnImg
 }) {
   return (
     <button
@@ -78,7 +78,7 @@ export function ButtonDrop({
       type={btnType}
       onClick={btnAction}
     >
-      {menuType}
+      {description}
       <img className={imgBtnDrop} src={btnImg} alt="Botão de Exibição" />
     </button>
   );
