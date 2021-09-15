@@ -1,18 +1,25 @@
 import React from 'react';
 import ButtonCancel, { ButtonConfirm, ButtonOption } from './buttons';
+import { InputGlobal } from './inputs';
 
-export default function PopUpWelcome() {
+export function PopUpWelcome() {
   return (
     <div id='modal' className='modal'>
-      <h2 className='welcome'>BEM VINDO</h2>
+      <h2 className='welcome'>BEM VINDO!</h2>
       <p className='welcomeMessage'>
         como é seu primeiro acesso, escolha uma senha definitiva:
       </p>
       <p className='passInfo'>6 dígitos númericos</p>
-      {/* input aqui */}
-      <input type='number' placeholder=' * * * * * * ' /> 
+     <InputGlobal
+     inputGlobalId = 'inputPassPopup'
+     inpuGlobaltValue = 'number'
+     inputGlobalType = 'password'
+     inputGlobalPlaceHolder = ' *  *  *  *  *  *'
+     />
+     <div className='endButtons'>
       <ButtonCancel
         btnClassName='cancelPopup'
+        btnText='FECHAR'
         //   btnAction = {} aqui chama a função do botão
       />
       <ButtonConfirm
@@ -20,6 +27,7 @@ export default function PopUpWelcome() {
         btnText='SALVAR'
         //   btnAction = {} aqui chama a função do botão
       />
+      </div>
     </div>
   );
 }
@@ -46,8 +54,10 @@ export function PopUpHamb() {
         option='vegetariano'
         //   btnAction = {} aqui chama a função do botão
       />
+      <div className='endButtons'>
       <ButtonCancel
         btnClassName='cancelPopup'
+        btnText='CANCELAR'
         //   btnAction = {} aqui chama a função do botão
       />
       <ButtonConfirm
@@ -55,6 +65,7 @@ export function PopUpHamb() {
         btnText='PRÓXIMO'
         //   btnAction = {} aqui chama a função do botão
       />
+      </div>
     </div>
   );
 };
@@ -76,8 +87,10 @@ export function PopUpAdd() {
         option='ovo'
         //   btnAction = {} aqui chama a função do botão
       />
+      <div  className='endButtons'>
       <ButtonCancel
         btnClassName='cancelPopup'
+        btnText='FECHAR'
         //   btnAction = {} aqui chama a função do botão
       />
       <ButtonConfirm
@@ -85,6 +98,33 @@ export function PopUpAdd() {
         btnText='CONFIRMAR'
         //   btnAction = {} aqui chama a função do botão
       />
+      </div>
+    </div>
+  );
+};
+
+export function PopUpObserve() {
+  return (
+    <div id='modal' className='modal'>
+      <h2 className='note'>Alguma observação?</h2>
+     <InputGlobal
+     inputGlobalId = 'inputNote'
+     inpuGlobaltValue = 'text'
+     inputGlobalType = 'text'
+     inputGlobalPlaceHolder = 'Clique aqui para começar a anotar.'
+     />
+     <div  className='endButtons'>
+      <ButtonCancel
+        btnClassName='closeNote'
+        btnText='FECHAR'
+        //   btnAction = {} aqui chama a função do botão
+      />
+      <ButtonConfirm
+        btnClassName='saveNote'
+        btnText='CONFIRMAR'
+        //   btnAction = {} aqui chama a função do botão
+      />
+     </div>
     </div>
   );
 };

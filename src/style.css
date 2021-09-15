@@ -9,30 +9,39 @@
   --extra-lightblue: rgba(74, 159, 233, 0.562);
   --light-blue: rgba(74, 158, 233, 0.8);
   --normal-blue: #3075b3;
-  --green-green: #6aa06b;
+  --light-grey: #c1c1c193;
   --grey-grey: #c1c1c1;
+  --grey-dark: #959AA9;
+  --green-green: #6aa06b;
+  --green-dark: #458447;
   --black-black: #000;
   --white-white: #fff;
-  --shadow-btn: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px,
-    rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
-  --shadow-btnClick: rgb(204, 219, 232) 3px 3px 6px 0px inset,
-    rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+  --drop-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  --inner-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
 button {
   font-family: "Montserrat", sans-serif;
   border: none;
   border-radius: 10px;
-  box-shadow: var(--shadow-btn);
-  background-color: var(--grey-grey);
-  width: 15%;
-  padding: 1%;
+  box-shadow: var(--drop-shadow);
+  background: var(--grey-grey);
+  padding: 2%;
   font-size: 100%;
 }
+button:hover{
+  box-shadow: var(--inner-shadow);
+}
 .btnConfirm {
- background-color: var(--green-green);
+ background: var(--green-green);
+}
+.btnConfirm:hover{
+background: var(--green-dark);
+}
+.btnCancel:hover, .btnBack:hover{
+background: var(--grey-dark);
 }
 .btnInsideTable{
- background-color: var(--normal-blue);
+ background: var(--normal-blue);
 }
 .btnBack{
 display: flex;
@@ -43,4 +52,69 @@ width: 8%;
 .btnDrop{
  border-radius: 0;
 }
-
+.requestHour{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  width: 12%;
+  border: none;
+  border-radius: 10px;
+  background: var(--extra-lightblue);
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+}
+.modal{
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  padding: 2%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  text-align: center;
+  border: solid 7px var(--extra-lightblue);
+  border-radius: 10px;
+  box-shadow: var(--drop-shadow);
+}
+.options{
+  background: var(--extra-lightblue);
+  width: 100%;
+  margin: 2%;
+}
+.options:hover {
+  cursor: pointer;
+  background: var(--normal-blue);
+}
+.endButtons{
+ display: flex;
+ justify-content: space-between;
+ width: 100%;
+ padding: 15% 0 0 0;
+}
+.btnCancel, .btnConfirm{
+  padding: 3%;
+  font-size: 70%;
+}
+.inputLogin{
+  width: 60%;
+  border: none;
+  background: var(--light-grey);
+  padding: 1%;
+}
+.inputLogin::placeholder{
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: #000;
+}
+.inputGlobal{
+  border-radius: 10px;
+  border: solid 3px var(--light-blue);
+  padding: 1%;
+}
+.inputGlobal::placeholder{
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  color: var(--grey-grey);
+}

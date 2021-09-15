@@ -1,14 +1,15 @@
 import React from "react";
 
-export default function ButtonCancel({ btnClassName, btnAction }) {
+export default function ButtonCancel({ btnClassName, btnAction, btnText }) {
   return (
     <button
       id="btnCancel"
       className={btnClassName}
+      class='btnCancel'
       type="button"
       onClick={btnAction}
     >
-      CANCELAR
+      {btnText}
     </button>
   );
 }

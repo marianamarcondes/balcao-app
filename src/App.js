@@ -1,5 +1,6 @@
 import '../src/style.css'
 import Routes from './routes';
+import {InputGlobal} from './components/inputs'
 
 function App() {
   <Routes/>
@@ -7,7 +8,8 @@ function App() {
   return (
     <div className="App">
 
-
+   <InputGlobal
+   />
     </div>
   );
 }
