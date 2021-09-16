@@ -1,6 +1,6 @@
 import React from "react";
 
-export function Select({ selectId, selectClassName, selectPlaceHolder, selectOptions}) {
+export function Select({selectId, selectClassName, selectPlaceHolder, selectOptions}) {
   return (
     <select
       id={selectId}

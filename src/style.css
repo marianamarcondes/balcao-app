@@ -95,7 +95,7 @@ width: 8%;
 }
 .btnCancel, .btnConfirm{
   padding: 3%;
-  font-size: 70%;
+  font-size: 100%;
 }
 .inputLogin{
   width: 60%;
@@ -109,6 +109,7 @@ width: 8%;
   color: #000;
 }
 .inputGlobal{
+  width: 60%;
   border-radius: 10px;
   border: solid 3px var(--light-blue);
   padding: 1%;
@@ -116,5 +117,5 @@ width: 8%;
 .inputGlobal::placeholder{
   text-align: center;
   font-family: "Montserrat", sans-serif;
-  color: var(--grey-grey);
+  color: var(--grey-dark);
 }

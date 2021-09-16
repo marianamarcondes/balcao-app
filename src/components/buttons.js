@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ButtonCancel({ btnClassName, btnAction, btnText }) {
+export function ButtonCancel({ btnClassName, btnAction, btnText }) {
   return (
     <button
       id="btnCancel"
@@ -24,19 +24,6 @@ export function ButtonConfirm({ btnClassName, btnText, btnAction }) {
       onClick={btnAction}
     >
       {btnText}
-    </button>
-  );
-}
-
-export function ButtonLogout({ btnClassName, btnAction }) {
-  return (
-    <button
-      id="btnLogout"
-      className={btnClassName}
-      type="button"
-      onClick={btnAction}
-    >
-      sair
     </button>
   );
 }
