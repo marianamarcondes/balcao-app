@@ -1,13 +1,14 @@
-/* para chamar a variavel da cor use var(--nome-dacor); */
-.body{
-    margin: 0;
-    padding: 0;
-    font-family: "Montserrat", sans-serif;
+* , body {
+  margin: 0;
+  padding: 0;
 }
 :root,
 #root {
-  --extra-lightblue: rgba(74, 159, 233, 0.562);
-  --light-blue: rgba(74, 158, 233, 0.8);
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  --extra-lightblue: rgba(114, 175, 228, 0.562);
+  --light-blue: rgba(88, 168, 238, 0.8);
   --normal-blue: #3075b3;
   --light-grey: #c1c1c193;
   --grey-grey: #c1c1c1;
@@ -16,6 +17,7 @@
   --green-dark: #458447;
   --black-black: #000;
   --white-white: #fff;
+  --red-error: rgba(226, 57, 57, 0.8);
   --drop-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   --inner-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
 }
@@ -27,6 +29,7 @@ button {
   background: var(--grey-grey);
   padding: 2%;
   font-size: 100%;
+  cursor: pointer;
 }
 button:hover{
   box-shadow: var(--inner-shadow);
@@ -89,7 +92,7 @@ width: 8%;
 }
 .endButtons{
  display: flex;
- justify-content: space-between;
+ justify-content: space-evenly;
  width: 100%;
  padding: 15% 0 0 0;
 }
@@ -108,7 +111,7 @@ width: 8%;
   font-family: "Montserrat", sans-serif;
   color: #000;
 }
-.inputGlobal{
+.inputGlobal {
   width: 60%;
   border-radius: 10px;
   border: solid 3px var(--light-blue);

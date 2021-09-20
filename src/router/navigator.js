@@ -1,12 +1,3 @@
-import { useHistory } from "react-router-dom";
-
-function Navigator() {
-  const history = useHistory();
-
- return function navigateTo(path) {
-    history.push(path);
-  };
-
-};
-
-export default Navigator;
+export const navigator = (history, path) => {
+  history.push(path);
+}

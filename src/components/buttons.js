@@ -5,7 +5,6 @@ export function ButtonCancel({ btnClassName, btnAction, btnText }) {
     <button
       id="btnCancel"
       className={btnClassName}
-      class='btnCancel'
       type="button"
       onClick={btnAction}
     >
@@ -19,7 +18,6 @@ export function ButtonConfirm({ btnClassName, btnText, btnAction }) {
     <button
       id="btnConfirm"
       className={btnClassName}
-      class="btnConfirm"
       type="button"
       onClick={btnAction}
     >
@@ -61,7 +59,6 @@ export function ButtonDrop({
   return (
     <button
       id={btnId}
-      class="btnDrop"
       className={btnClassName}
       type={btnType}
       onClick={btnAction}

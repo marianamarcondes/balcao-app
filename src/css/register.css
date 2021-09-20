@@ -1,0 +1,102 @@
+.register {
+  background: var(--extra-lightblue);
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+}
+
+.logoRegister {
+  background: var(--light-blue);
+  width: 100%;
+  padding: 5% auto;
+}
+.logoRegister img {
+  padding: 2% 0 0 37%;
+  width: 60vh;
+}
+.mainRegister {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-top: 3%;
+}
+.mainRegister p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 4vh;
+  text-align: center;
+  padding: 1%;
+}
+.selectRegister {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+  text-align: center;
+  width: 50vh;
+  padding: 2%;
+  border-radius: 10px;
+  border: solid 3px var(--light-blue);
+  overflow: hidden;
+  background: url("../img/select.svg") no-repeat #fff;
+  background-position: 45vh;
+  font-size: 100%;
+  margin-bottom: 5%;
+}
+.registerName,
+.registerEmail {
+  width: 70vh;
+  padding: 2%;
+  margin-bottom: 5%;
+  font-size: 100%;
+}
+.firstPassRegister {
+  margin-top: 5%;
+}
+.tempPass {
+  letter-spacing: 0.8vh;
+  color: var(--normal-blue);
+  font-weight: 700;
+  font-size: 6vh;
+}
+.endButtons {
+  justify-content: space-between;
+  margin-top: 0;
+  margin-bottom: 7%;
+}
+.registerExit,
+.registerAdd {
+  width: 25vh;
+}
+
+@media (max-width: 600px) {
+  .register {
+    height: 100vh;
+  }
+  .logoRegister img {
+    padding: 10% 0 0 10%;
+    width: 40vh;
+  }
+  .mainRegister {
+    margin-top: 15%;
+    width: 40vh;
+  }
+  .mainRegister p {
+    font-size: 3vh;
+  }
+  .selectRegister {
+    width: 42vh;
+    background-position: 38vh;
+  }
+  .registerName,
+  .registerEmail {
+    width: 42vh;
+    padding: 4%;
+  }
+  .endButtons {
+    margin-bottom: 2%;
+  }
+  .registerExit,
+  .registerAdd {
+    width: 15vh;
+  }
+}

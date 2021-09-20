@@ -1,9 +1,11 @@
 import React from "react";
 
-export function Select({selectId, selectClassName, selectPlaceHolder, selectOptions}) {
+export function Select({dataSelect,selectOnChange, selectValue, selectClassName, selectPlaceHolder, selectOptions}) {
   return (
     <select
-      id={selectId}
+      data-item={dataSelect}
+      onChange={selectOnChange}
+      value={selectValue}
       className={selectClassName}
       placeholder={selectPlaceHolder}
     >{selectOptions}</select>

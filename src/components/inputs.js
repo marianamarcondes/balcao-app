@@ -1,12 +1,20 @@
 import React from "react";
 
 export function InputLogin({
+  inputName,
+  dataInput,
+  inputOnChange,
+  inputValue,
   inputId,
   inputType,
-  inputPlaceHolder
+  inputPlaceHolder,
 }) {
   return (
       <input
+        name={inputName}
+        data-item={dataInput}
+        onChange={inputOnChange}
+        value={inputValue}
         id={inputId}
         className="inputLogin" 
         type={inputType}
@@ -17,6 +25,10 @@ export function InputLogin({
 }
 
 export function InputGlobal({
+  inputName,
+  dataInput,
+  inputOnChange,
+  inputValue,
   inputGlobalId,
   inputClassName,
   inputGlobalType,
@@ -25,11 +37,14 @@ export function InputGlobal({
 }) {
   return (
     <input
+    name={inputName}
+      data-item={dataInput}
+      onChange={inputOnChange}
+      value={inputValue}
       id={inputGlobalId}
-      class='inputGlobal'
       className={inputClassName}
       type={inputGlobalType}
-      contenteditable={inputContentEdit}
+      contentEditable={inputContentEdit}
       placeholder={inputGlobalPlaceHolder}
     />
   );
