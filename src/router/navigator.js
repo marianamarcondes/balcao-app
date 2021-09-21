@@ -1,3 +1,3 @@
-export const navigator = (history, path) => {
+export const Navigator = (history, path) => {
   history.push(path);
 }

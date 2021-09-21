@@ -10,7 +10,7 @@
   --extra-lightblue: rgba(114, 175, 228, 0.562);
   --light-blue: rgba(88, 168, 238, 0.8);
   --normal-blue: #3075b3;
-  --light-grey: #c1c1c193;
+  --light-grey: #c1c1c1b7;
   --grey-grey: #c1c1c1;
   --grey-dark: #959AA9;
   --green-green: #6aa06b;
@@ -105,6 +105,11 @@ width: 8%;
   border: none;
   background: var(--light-grey);
   padding: 1%;
+  font-size: 100%;
+  font-family: "Montserrat" sans-serif;
+  font-weight: 600;
+  margin: 1%;
+  border-radius: 30px;
 }
 .inputLogin::placeholder{
   text-align: center;

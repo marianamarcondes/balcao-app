@@ -1,25 +1,28 @@
 import "../css/register.css";
 import { useState } from "react";
+import { useHistory } from 'react-router-dom';
 import { Select, SelectOption } from "../components/select";
 import { InputGlobal } from "../components/inputs";
 import { ButtonCancel, ButtonConfirm } from "../components/buttons";
+import { tempPassword } from "../utils/tempPass";
+import { Navigator } from "../router/navigator";
 // import { registerWorker } from "../services/auth";
 import tituloCadastro from "../img/titulo-cadastro.png";
 
 export default function Register() {
-  const [occupation, setOccupation] = useState('');
-  const [userName, setName] = useState('');
-  const [userEmail, setEmail] = useState('');
-  let tempPassword = Math.random().toString(6).slice(-6);
-  
-  const workerFile = {occupation, userName, userEmail, tempPassword};
-  console.log(workerFile)
+  const history = useHistory();
+  const [occupation, setOccupation] = useState("");
+  const [userName, setName] = useState("");
+  const [userEmail, setEmail] = useState("");
+ 
+
+  const workerFile = { occupation, userName, userEmail, tempPassword };
+  console.log(workerFile);
   const registerWorker = async (event, {workerFile}) => {
-    const apiToSignin = "https://lab-api-bq.herokuapp.com/users";
     event.preventDefault();
-    return await fetch(apiToSignin, {
+    await fetch('https://lab-api-bq.herokuapp.com/users', {
       method: "POST",
-      headers: { "Content-Type": "application/json"},
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         name: workerFile.userName,
         email: workerFile.userEmail,
@@ -28,11 +31,11 @@ export default function Register() {
         restaurant: "Balcao APP",
       }),
     })
-      .then((response) => response.json())
-       .then((json)=> {
+      .then((response) =>{
+        const json = response.json()
         const token = json.token;
         const code = json.code;
-        const email = workerFile.email;
+        const email = json.email;
         localStorage.setItem("workerToken", token);
         localStorage.setItem("workerEmail", email);
         if (json.token !== undefined && code === 200) {
@@ -48,7 +51,7 @@ export default function Register() {
   };
 
   return (
-    <div className="register" data-register="">
+    <div className="register" data-register="signin">
       <header className="logoRegister">
         <img src={tituloCadastro} alt="Cadastro" />
       </header>
@@ -59,9 +62,14 @@ export default function Register() {
           selectOnChange={(event) => setOccupation(event.target.value)}
           selectValue={occupation}
           selectClassName="selectRegister"
-          selectPlaceHolder="cargo"
           selectOptions={
             <>
+              <SelectOption
+                disabled
+                selected
+                optionValue="tag"
+                option="selecione o cargo"
+              />
               <SelectOption optionValue="waiter" option="Garçom/Garçonete" />
               <SelectOption optionValue="chef" option="Chef de cozinha" />
             </>
@@ -98,7 +106,7 @@ export default function Register() {
           <ButtonCancel
             btnClassName="btnCancel registerExit"
             btnText="SAIR"
-            //   btnAction = {} aqui chama a função do botão
+            btnAction = {()=> Navigator(history, '/')}
           />
           <ButtonConfirm
             btnClassName="btnConfirm registerAdd"

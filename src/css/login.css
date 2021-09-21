@@ -1,0 +1,71 @@
+.login {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  height: 100vh;
+  background-image: url("../img/bg-login.png");
+}
+.logoLogin img {
+  margin: 7% auto;
+  width: 60vh;
+}
+.titleLogin {
+  font-family: "Montserrat" sans-serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: #fff;
+}
+.mainLogin {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  width: 100%;
+  margin: 2%;
+}
+.selectLogin {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  margin: 1%;
+  width: 62%;
+  border: none;
+  border-radius: 30px;
+  background: url("../img/select.svg") no-repeat var(--light-grey);
+  padding: 1%;
+  text-indent: 1px;
+  text-overflow: "";
+  text-align: center;
+  overflow: hidden;
+  background-position: 91%;
+  font-size: 100%;
+  font-family: "Montserrat" sans-serif;
+  font-weight: 600;
+}
+
+.loginPage {
+  width: 15%;
+  padding: 1%;
+  margin: 3%;
+  font-size: 24px;
+  font-family: "Montserrat" sans-serif;
+}
+.eye {
+  left: 72%;
+  top: 60%;
+  position: absolute;
+  width: 35px;
+}
+
+@media (max-width: 600px) {
+  .logoLogin img {
+    margin: 5% auto;
+    width: 40vh;
+  }
+  .mainLogin {
+    margin: 10% auto;
+  }
+  .eye {
+    left: 72%;
+    top: 37.4%;
+    width: 15px;
+  }
+}
