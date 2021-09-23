@@ -1,54 +1,25 @@
+import React from "react";
 import "../css/register.css";
-import { useState } from "react";
-import { useHistory } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { Select, SelectOption } from "../components/select";
 import { InputGlobal } from "../components/inputs";
 import { ButtonCancel, ButtonConfirm } from "../components/buttons";
 import { tempPassword } from "../utils/tempPass";
 import { Navigator } from "../router/navigator";
-// import { registerWorker } from "../services/auth";
+import { RegisterWorker } from "../services/auth";
 import tituloCadastro from "../img/titulo-cadastro.png";
 
 export default function Register() {
   const history = useHistory();
   const [occupation, setOccupation] = useState("");
-  const [userName, setName] = useState("");
-  const [userEmail, setEmail] = useState("");
- 
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [workerFile, setWorkerFile] = useState({});
 
-  const workerFile = { occupation, userName, userEmail, tempPassword };
-  console.log(workerFile);
-  const registerWorker = async (event, {workerFile}) => {
-    event.preventDefault();
-    await fetch('https://lab-api-bq.herokuapp.com/users', {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name: workerFile.userName,
-        email: workerFile.userEmail,
-        password: workerFile.tempPassword,
-        role: workerFile.occupation,
-        restaurant: "Balcao APP",
-      }),
-    })
-      .then((response) =>{
-        const json = response.json()
-        const token = json.token;
-        const code = json.code;
-        const email = json.email;
-        localStorage.setItem("workerToken", token);
-        localStorage.setItem("workerEmail", email);
-        if (json.token !== undefined && code === 200) {
-          console.log("Usuário cadastrado!");
-        }
-      })
-      .catch((json) => {
-        const code = json.code;
-        if (code === 400 || code === 403) {
-          throw new Error(json.message);
-        }
-      });
-  };
+  useEffect(() => {
+    setWorkerFile({occupation, name, email, tempPassword});
+  }, [occupation, name, email]);
 
   return (
     <div className="register" data-register="signin">
@@ -79,7 +50,7 @@ export default function Register() {
         <InputGlobal
           dataInput="name"
           inputOnChange={(event) => setName(event.target.value)}
-          inputValue={userName}
+          inputValue={name}
           inputClassName="inputGlobal registerName"
           inputGlobalType="text"
           inputGlobalPlaceHolder="João da Silva Santos"
@@ -89,7 +60,7 @@ export default function Register() {
         <InputGlobal
           dataInput="email"
           inputOnChange={(event) => setEmail(event.target.value)}
-          inputValue={userEmail}
+          inputValue={email}
           inputClassName="inputGlobal registerEmail"
           inputGlobalType="email"
           inputGlobalPlaceHolder="exemplo@email.com"
@@ -106,14 +77,12 @@ export default function Register() {
           <ButtonCancel
             btnClassName="btnCancel registerExit"
             btnText="SAIR"
-            btnAction = {()=> Navigator(history, '/')}
+            btnAction={() => Navigator(history, "/")}
           />
           <ButtonConfirm
             btnClassName="btnConfirm registerAdd"
             btnText="CONFIRMAR"
-            btnAction={(event) => {
-              registerWorker(event, { workerFile });
-            }}
+            btnAction={() => RegisterWorker(workerFile)}
           />
         </div>
       </main>

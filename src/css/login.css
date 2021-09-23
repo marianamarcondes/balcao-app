@@ -1,71 +1,86 @@
 .login {
   display: flex;
-  flex-flow: column nowrap;
   align-items: center;
+  flex-flow: column nowrap;
+  background: url("../img/bg-login.png");
   height: 100vh;
-  background-image: url("../img/bg-login.png");
 }
-.logoLogin img {
-  margin: 7% auto;
-  width: 60vh;
+.logoLogin {
+  margin-top: 5%;
+  padding: 0;
 }
 .titleLogin {
   font-family: "Montserrat" sans-serif;
-  font-size: 30px;
-  font-weight: 400;
-  color: #fff;
+  font-weight: 500;
+  color: var(--grey-grey);
+  padding-top: 3%;
+  text-align: center;
 }
 .mainLogin {
+  width: 100%;
   display: flex;
   flex-flow: column nowrap;
   align-items: center;
-  width: 100%;
-  margin: 2%;
+  margin: 5% auto;
 }
 .selectLogin {
   -webkit-appearance: none;
   -moz-appearance: none;
-  margin: 1%;
-  width: 62%;
+  appearance: none;
   border: none;
-  border-radius: 30px;
+  margin-bottom: 1%;
   background: url("../img/select.svg") no-repeat var(--light-grey);
-  padding: 1%;
-  text-indent: 1px;
-  text-overflow: "";
-  text-align: center;
-  overflow: hidden;
-  background-position: 91%;
+  background-position: 92%;
+  width: 63%;
+  border-radius: 30px;
+  padding: 0.65%;
   font-size: 100%;
-  font-family: "Montserrat" sans-serif;
   font-weight: 600;
-}
-
-.loginPage {
-  width: 15%;
-  padding: 1%;
-  margin: 3%;
-  font-size: 24px;
-  font-family: "Montserrat" sans-serif;
+  color: #000;
+  text-align: center;
 }
 .eye {
-  left: 72%;
-  top: 60%;
   position: absolute;
-  width: 35px;
+  left: 75%;
+  padding-top: 4px;
+}
+.eye img{
+  padding-top: 5.5%;
+}
+.loginPage{
+  margin-top: 3%;
+  width: 15%;
+  padding: 1%;
+  font-weight: 700;
 }
 
 @media (max-width: 600px) {
-  .logoLogin img {
-    margin: 5% auto;
-    width: 40vh;
+  .logoLogin {
+    margin-top: 40%;
   }
-  .mainLogin {
-    margin: 10% auto;
+  .mainLogin{
+    margin: 20% auto; 
   }
-  .eye {
-    left: 72%;
-    top: 37.4%;
-    width: 15px;
+  .selectLogin {
+    background-position: 93%;
+    width: 85%;
+    margin-bottom: 5%;
+    padding: 2%;
+  }
+  .inputLogin {
+    margin: 5%;
+    width: 85%;
+  }
+  .resetInput{
+    padding: 2%;
+  }
+  .loginPage{
+    margin-top: 10%;
+    width: 30%;
+    padding: 3%;
+    font-weight: 700;
+  }
+  .eye{
+    left: 82%;
   }
 }

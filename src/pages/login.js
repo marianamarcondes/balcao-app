@@ -1,22 +1,29 @@
 import "../css/login.css";
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { InputLogin } from "../components/inputs";
 import { Select, SelectOption } from "../components/select";
 import { ButtonConfirm } from "../components/buttons";
+import { LoginWorker } from "../services/auth";
 import logoCinza from "../img/logo-cinza.png";
-import see from "../img/see.svg";
-import { ShowPass } from "../utils/showPass";
+
+
 
 export default function Login() {
   const [emailLogin, setEmailLogin] = useState("");
   const [occupationLogin, setOccupationLogin] = useState("");
   const [passLogin, setPassLogin] = useState("");
+  const [workerInfo, setWorkerInfo] = useState({});
+
+  useEffect(() => {
+    setWorkerInfo({emailLogin, occupationLogin, passLogin});
+  }, [emailLogin, occupationLogin, passLogin]);
+  
   return (
     <div className="login" data-login="login">
       <header className="logoLogin">
         <img src={logoCinza} alt="logo - Balcao App" />
+        <h2 className="titleLogin"> LOGIN </h2>
       </header>
-      <h2 className="titleLogin"> LOGIN </h2>
       <main className="mainLogin">
         <Select
           dataSelect="selectLogin"
@@ -53,11 +60,10 @@ export default function Login() {
           inputType="password"
           inputPlaceHolder="insira sua senha"
         />
-        <span className="eye" onClick={(e) => ShowPass(e)}><img data-item="imgEye" id="imgEye" alt="Mostrar/esconder senha" src={see}/></span>
         <ButtonConfirm
           btnClassName="btnConfirm loginPage"
           btnText="ENTRAR"
-          btnAction={(event) => console.log(event.target.value)}
+          btnAction={() => LoginWorker(workerInfo)}
         />
       </main>
     </div>
