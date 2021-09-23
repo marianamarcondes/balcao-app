@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { Select, SelectOption } from "../components/select";
 import { InputGlobal } from "../components/inputs";
 import { ButtonCancel, ButtonConfirm } from "../components/buttons";
-import { tempPassword } from "../utils/tempPass";
+import { tempPassword, refreshPage } from "../utils/simpleFunc";
 import { Navigator } from "../router/navigator";
 import { RegisterWorker } from "../services/auth";
 import tituloCadastro from "../img/titulo-cadastro.png";
@@ -82,7 +82,7 @@ export default function Register() {
           <ButtonConfirm
             btnClassName="btnConfirm registerAdd"
             btnText="CONFIRMAR"
-            btnAction={() => RegisterWorker(workerFile)}
+            btnAction={() => RegisterWorker(workerFile).then(refreshPage())}
           />
         </div>
       </main>
