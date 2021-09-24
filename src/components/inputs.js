@@ -64,6 +64,7 @@ export function InputGlobal({
 }) {
   return (
     <input
+      min="0"
       name={inputName}
       data-item={dataInput}
       onChange={inputOnChange}

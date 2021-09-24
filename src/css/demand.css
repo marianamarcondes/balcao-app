@@ -1,0 +1,95 @@
+.demand {
+  display: flex;
+  flex-flow: row wrap;
+  width: 100%;
+  align-items: center;
+}
+.logoDemand {
+  width: 100%;
+  text-align: center;
+  margin: 3%;
+}
+.logoDemand img {
+  width: 60vh;
+}
+.mainDemand {
+  width: 100%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  flex-flow: column wrap;
+}
+.selectTable {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: url("../img/select.svg") no-repeat #fff;
+  background-position: 90%;
+  width: 19%;
+  margin: auto;
+  padding: 0.5%;
+  font-family: "Montserrat" sans-serif;
+  font-size: 18px;
+  text-align: initial;
+}
+.menuTable {
+  width: 60%;
+  border: solid 2px var(--light-blue);
+  margin: 3% 5% 0 -20%;
+  padding: 0;
+}
+.menuTab {
+  width: 100%;
+  display: flex;
+  flex-flow: row nowrap;
+}
+.morningMenu,
+.allDayMenu {
+  width: 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  font-size: 24px;
+  font-family: "Montserrat" sans-serif;
+  font-weight: 600;
+  margin-bottom: 5%;
+}
+.morningMenu:hover,
+.allDayMenu:hover {
+  background-color: var(--normal-blue);
+}
+.morningMenu {
+  background: url("../img/menu-um.svg") no-repeat var(--extra-lightblue);
+  background-position: 82%;
+}
+.allDayMenu {
+  background: url("../img/menu-dois.svg") no-repeat var(--light-blue);
+  background-position: 84.6%;
+}
+.itemsMenu {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  align-items: center;
+}
+.amount {
+  width: 10%;
+  padding: 1%;
+  text-align: center;
+  font-size: 24px;
+  color: #000;
+  margin: 2%;
+}
+.itemName{
+ background: var(--light-grey);
+ width: 80%;
+ padding: 1%;
+ margin: auto;
+ border-radius: 20px;
+ text-align: center;
+ font-family: "Montserrat" sans-serif;
+}
+
+hr {
+  width: 100%;
+  background: var(--light-blue);
+}

@@ -1,10 +1,20 @@
 import "../css/demand.css";
 import tituloLancar from "../img/titulo-lancar.png";
+import noteIcon from "../img/note.svg"
 import { Select, SelectOption } from "../components/select";
 import { useState } from "react";
-import { ButtonOption } from "../components/buttons";
+import { ButtonBack, ButtonConfirm, ButtonOption } from "../components/buttons";
+import { InputGlobal } from "../components/inputs";
+import { Navigator } from "../router/navigator";
+import { useHistory } from "react-router";
+
 export default function Demand() {
+  const history = useHistory();
   const [table, setTable] = useState();
+  const [amount, setAmount] = useState();
+  const [item] = useState("Exemplo de item");
+  const [note, setNote] = useState();
+
 
   return (
     <div className="demand" data-demand="demand">
@@ -23,7 +33,7 @@ export default function Demand() {
                 disabled
                 selected
                 optionValue="tag"
-                option="Qual o número da mesa?"
+                option="qual o número da mesa?"
               />
               <SelectOption optionValue="one" option="Nº 1" />
               <SelectOption optionValue="two" option="Nº 2" />
@@ -34,7 +44,7 @@ export default function Demand() {
           }
         />
         <table className="menuTable">
-          <div className="menuTab">
+          <nav className="menuTab">
             <ButtonOption
               btnId="morningMenu"
               btnClassName="morningMenu"
@@ -47,10 +57,41 @@ export default function Demand() {
               option="almoço e jantar"
               btnAction={() => console.log("clicou 2")}
             />
-          </div>
-        
+          </nav>
+        <div className="itemsMenu"> 
+        <InputGlobal
+          dataInput="amount"
+          inputOnChange={(event) => setAmount(event.target.value)}
+          inputValue={amount}
+          inputClassName="amount"
+          inputGlobalType="number"
+          inputGlobalPlaceHolder="0"
+          inputContentEdit={true}
+        />
+        <p className="itemName">{item}</p>
+        </div>
+        <hr/>
         </table>
       </main>
+      <div className="takeNote">
+      <img src={noteIcon} alt="Adicionar observação"/>
+      <InputGlobal
+       dataInput="note"
+       inputOnChange={(event)=> setNote(event.target.value)}
+       inputValue={note}
+       inputClassName="addNote"
+       inputGlobalType="text"
+       inputGlobalPlaceHolder="observações"
+       />
+       </div>
+       <ButtonBack
+       btnAction={() => Navigator(history, "/home")}
+       />
+       <ButtonConfirm
+        btnClassName="btnConfirm salon"
+        btnText="VER PEDIDO"
+        btnAction={()=> console.log("clicou no butao")}
+       />
     </div>
   );
 }
