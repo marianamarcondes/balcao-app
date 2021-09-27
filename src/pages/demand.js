@@ -1,6 +1,6 @@
 import "../css/demand.css";
 import tituloLancar from "../img/titulo-lancar.png";
-import noteIcon from "../img/note.svg"
+import noteIcon from "../img/note.svg";
 import { Select, SelectOption } from "../components/select";
 import { useState } from "react";
 import { ButtonBack, ButtonConfirm, ButtonOption } from "../components/buttons";
@@ -12,9 +12,9 @@ export default function Demand() {
   const history = useHistory();
   const [table, setTable] = useState();
   const [amount, setAmount] = useState();
-  const [item] = useState("Exemplo de item");
+  const [item] = useState("Exemplo de item ------------------------------- R$15");
   const [note, setNote] = useState();
-
+  const [payment] = useState("valor total");
 
   return (
     <div className="demand" data-demand="demand">
@@ -58,40 +58,62 @@ export default function Demand() {
               btnAction={() => console.log("clicou 2")}
             />
           </nav>
-        <div className="itemsMenu"> 
-        <InputGlobal
-          dataInput="amount"
-          inputOnChange={(event) => setAmount(event.target.value)}
-          inputValue={amount}
-          inputClassName="amount"
-          inputGlobalType="number"
-          inputGlobalPlaceHolder="0"
-          inputContentEdit={true}
-        />
-        <p className="itemName">{item}</p>
-        </div>
-        <hr/>
+          <div className="itemsMenu">
+            <InputGlobal
+              dataInput="amount"
+              inputOnChange={(event) => setAmount(event.target.value)}
+              inputValue={amount}
+              inputClassName="amount"
+              inputGlobalType="number"
+              inputGlobalPlaceHolder="0"
+              inputContentEdit={true}
+            />
+            <p className="itemName">{item}</p>
+          </div>
+          <hr />
         </table>
+        <div className="takeNote">
+          <img src={noteIcon} alt="Adicionar observação" />
+          <textarea
+            data-item="note"
+            onChange={(event) => setNote(event.target.value)}
+            value={note}
+            className="addNote"
+            type="text"
+            placeholder="observações"
+            cols="30"
+            row="10"
+          />
+        </div>
       </main>
-      <div className="takeNote">
-      <img src={noteIcon} alt="Adicionar observação"/>
-      <InputGlobal
-       dataInput="note"
-       inputOnChange={(event)=> setNote(event.target.value)}
-       inputValue={note}
-       inputClassName="addNote"
-       inputGlobalType="text"
-       inputGlobalPlaceHolder="observações"
-       />
-       </div>
-       <ButtonBack
-       btnAction={() => Navigator(history, "/home")}
-       />
-       <ButtonConfirm
-        btnClassName="btnConfirm salon"
-        btnText="VER PEDIDO"
-        btnAction={()=> console.log("clicou no butao")}
-       />
+      <table class="receiptTable">
+        <h2 className="titleReceipt">R E C I B O</h2>
+        <hr />
+        <div className="itemsSelected">
+          <InputGlobal
+            dataInput="amountSelected"
+            inputOnChange="false"
+            inputValue={amount}
+            inputClassName="amountSelected"
+            inputGlobalType="text"
+            inputGlobalPlaceHolder="0"
+            inputContentEdit="false"
+          />
+          <p className="itemNameReceipt">{item}</p>
+        </div>
+        <p className="payment"> Total: R${payment}</p>
+      </table>
+      <div className="buttonsDemand">
+        <ButtonBack
+          btnClass="btnBack salonBack"
+          btnAction={() => Navigator(history, "/home")}
+        />
+        <ButtonConfirm
+          btnClassName="btnConfirm salonConfirm"
+          btnText="FECHAR PEDIDO"
+          btnAction={() => console.log("clicou no butao")}
+        />
+      </div>
     </div>
   );
 }

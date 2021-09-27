@@ -1,6 +1,5 @@
-import React from "react";
 import "../css/register.css";
-import { useState, useEffect } from "react";
+import { React,  useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Select, SelectOption } from "../components/select";
 import { InputGlobal } from "../components/inputs";

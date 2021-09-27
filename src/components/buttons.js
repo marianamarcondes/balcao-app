@@ -26,9 +26,9 @@ export function ButtonConfirm({ btnClassName, btnText, btnAction }) {
   );
 }
 
-export function ButtonBack({ btnAction }) {
+export function ButtonBack({ btnClass, btnAction }) {
   return (
-    <button id="btnBack" className="btnBack" type="button" onClick={btnAction}>
+    <button id="btnBack" className={btnClass} type="button" onClick={btnAction}>
       voltar
     </button>
   );
@@ -52,7 +52,6 @@ export function ButtonDrop({
   btnClassName,
   btnType,
   btnAction,
-  description,
   imgBtnDrop,
   btnImg
 }) {
@@ -63,7 +62,6 @@ export function ButtonDrop({
       type={btnType}
       onClick={btnAction}
     >
-      {description}
       <img className={imgBtnDrop} src={btnImg} alt="Botão de Exibição" />
     </button>
   );
