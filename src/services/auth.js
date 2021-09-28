@@ -47,9 +47,9 @@ export const LoginWorker = async (workerInfo) => {
     localStorage.setItem("workerEmail", email);
     localStorage.setItem("workerOccupation", occupation);
     if (token) {
-      console.log("Usuário logado!");
+     console.log("Usuário logado")
     }
-  } catch (json) {
+  } catch(json) {
     const code = json.code;
     if (code === 400 || code === 403) {
       throw new Error(json.message);

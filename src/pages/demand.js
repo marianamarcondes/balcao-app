@@ -7,6 +7,7 @@ import { ButtonBack, ButtonConfirm, ButtonOption } from "../components/buttons";
 import { InputGlobal } from "../components/inputs";
 import { Navigator } from "../router/navigator";
 import { useHistory } from "react-router";
+import { GetMorningMenu } from "../services/data";
 
 export default function Demand() {
   const history = useHistory();
@@ -15,6 +16,7 @@ export default function Demand() {
   const [item] = useState("Exemplo de item ------------------------------- R$15");
   const [note, setNote] = useState();
   const [payment] = useState("valor total");
+  const userToken = localStorage.getItem("workerToken")
 
   return (
     <div className="demand" data-demand="demand">
@@ -49,7 +51,7 @@ export default function Demand() {
               btnId="morningMenu"
               btnClassName="morningMenu"
               option="café da manhã"
-              btnAction={() => console.log("clicou 1")}
+              btnAction={() => GetMorningMenu(userToken)}
             />
             <ButtonOption
               btnId="allDayMenu"

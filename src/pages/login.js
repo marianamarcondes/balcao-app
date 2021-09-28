@@ -1,14 +1,15 @@
 import "../css/login.css";
 import { useState, useEffect} from "react";
+import { useHistory } from "react-router";
+import { Navigator } from "../router/navigator";
 import { InputLogin } from "../components/inputs";
 import { Select, SelectOption } from "../components/select";
 import { ButtonConfirm } from "../components/buttons";
 import { LoginWorker } from "../services/auth";
 import logoCinza from "../img/logo-cinza.png";
 
-
-
 export default function Login() {
+  const history = useHistory();
   const [emailLogin, setEmailLogin] = useState("");
   const [occupationLogin, setOccupationLogin] = useState("");
   const [passLogin, setPassLogin] = useState("");
@@ -63,7 +64,7 @@ export default function Login() {
         <ButtonConfirm
           btnClassName="btnConfirm loginPage"
           btnText="ENTRAR"
-          btnAction={() => LoginWorker(workerInfo)}
+          btnAction={()=> LoginWorker(workerInfo).then((Navigator(history, "/home")))}
         />
       </main>
     </div>
