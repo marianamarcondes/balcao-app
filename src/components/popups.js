@@ -103,7 +103,7 @@ export function PopUpAdd() {
   );
 };
 
-export function PopUpObserve() {
+export function PopUpNote() {
   return (
     <div id='modal' className='modal'>
       <h2 className='note'>Alguma observação?</h2>

@@ -8,10 +8,12 @@
 .logoRegister {
   background: var(--light-blue);
   width: 100%;
-  padding: 5% auto;
 }
 .logoRegister img {
-  padding: 2% 0 0 37%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  padding-top: 2%;
   width: 60vh;
 }
 .mainRegister {
@@ -65,19 +67,18 @@
 }
 .registerExit,
 .registerAdd {
-  width: 25vh;
+  width: 30vh;
 }
 
 @media (max-width: 600px) {
   .register {
-    height: 100vh;
+    height: 120vh;
   }
   .logoRegister img {
-    padding: 10% 0 0 10%;
     width: 40vh;
   }
   .mainRegister {
-    margin-top: 15%;
+    margin-top: 10%;
     width: 40vh;
   }
   .mainRegister p {

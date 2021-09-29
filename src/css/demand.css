@@ -4,12 +4,14 @@
   width: 100%;
 }
 .logoDemand {
+  background: var(--light-blue);
   width: 100%;
   text-align: center;
+  margin-bottom: 3%;
 }
 .logoDemand img {
   width: 60vh;
-  margin: 3%;
+  margin-top: 3%;
 }
 .selectTable {
   -webkit-appearance: none;
@@ -17,57 +19,69 @@
   appearance: none;
   background: url("../img/select.svg") no-repeat #fff;
   background-position: 94%;
-  width: 40%;
+  width: 75%;
   margin: 2% auto;
   padding: 1%;
   font-family: "Montserrat" sans-serif;
   font-size: 100%;
   text-align: center;
+  border: solid 2px var(--light-blue);
 }
 .mainDemand {
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-flow: column wrap;
+  margin-top: 3%;
 }
 .menuTable {
   border: solid 2px var(--light-blue);
-  padding: 0;
-  margin: 3% 2% 3% 8%;
+  margin: 3% 2% 3% 4%;
   box-shadow: var(--drop-shadow);
 }
 .menuTab {
-  width: 100%;
   display: flex;
   flex-flow: row nowrap;
 }
 .morningMenu,
-.allDayMenu {
+.allDay {
   width: 100%;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  font-size: 100%;
+  font-size: 80%;
   font-family: "Montserrat" sans-serif;
   font-weight: 600;
   margin-bottom: 5%;
+  text-align: initial;
 }
 .morningMenu:hover,
-.allDayMenu:hover {
+.allDay:hover {
   background-color: var(--normal-blue);
 }
 .morningMenu {
-  background: url("../img/menu-um.svg") no-repeat var(--extra-lightblue);
+  background: url("../img/coffe-menu.svg") no-repeat var(--extra-lightblue);
+  background-position: 75%;
+  background-size: 20px;
+}
+.Burguers {
+  background: url("../img/burguer.svg") no-repeat var(--extra-lightblue);
   background-position: 90%;
   background-size: 20px;
 }
-.allDayMenu {
-  background: url("../img/menu-dois.svg") no-repeat var(--light-blue);
-  background-position: 91%;
-  background-size: 23px;
+.Side {
+  background: url("../img/fries.svg") no-repeat var(--extra-lightblue);
+  background-position: 95%;
+  background-size: 20px;
 }
+.Drink {
+  background: url("../img/drink.svg") no-repeat var(--extra-lightblue);
+  background-position: 90%;
+  background-size: 27px;
+}
+
 .itemsMenu {
+  width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  width: 100%;
   align-items: center;
 }
 .amount {
@@ -92,9 +106,14 @@
   text-align: center;
   font-family: "Montserrat" sans-serif;
 }
+.itemPrice {
+  font-weight: 600;
+  margin-right: 2%;
+  border-bottom: solid 2px var(--light-grey);
+}
 .receiptTable {
-  margin: 3% 1% 0 1%;
-  width: 45%;
+  width: 35%;
+  margin: 2% 2% 0 3%;
   display: flex;
   flex-flow: column nowrap;
   border: solid 2px var(--grey-dark);
@@ -119,10 +138,7 @@
   width: 10%;
   margin: 2% 1% 2% 4%;
 }
-.itemName {
-  background: var(--light-grey);
-  margin-right: 4%;
-}
+
 .itemNameReceipt {
   align-items: center;
   display: flex;
@@ -134,7 +150,8 @@
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: 3%;
+  margin-top: 5%;
+  margin-left: 4%;
 }
 .takeNote img {
   border: none;
@@ -151,7 +168,7 @@
   font-size: 24px;
   text-align: center;
   margin-top: 5%;
-  margin-bottom: 3%;
+  margin-bottom: 1%;
 }
 .buttonsDemand {
   width: 100%;
@@ -168,4 +185,21 @@
   width: 20%;
   padding: 1%;
   margin: 3% 2% 3% 2%;
+}
+
+@media (max-width: 700px) {
+  .morningMenu,
+  .allDay {
+    display: flex;
+    flex-flow: column wrap;
+    background-position: 23px 43px;
+    height: 15vh;
+  }
+
+  .amount {
+    width: 25%;
+  }
+  .takeNote img {
+    width: 15%;
+  }
 }

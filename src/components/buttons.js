@@ -34,18 +34,18 @@ export function ButtonBack({ btnClass, btnAction }) {
   );
 }
 
-export function ButtonInsideTable({ btnText, btnAction }) {
-  return (
-    <button
-      id="btnInsideTable"
-      className="btnInsideTable"
-      type="button"
-      onClick={btnAction}
-    >
-      {btnText}
-    </button>
-  );
-}
+// export function ButtonInsideTable({ btnText, btnAction }) {
+//   return (
+//     <button
+//       id="btnInsideTable"
+//       className="btnInsideTable"
+//       type="button"
+//       onClick={btnAction}
+//     >
+//       {btnText}
+//     </button>
+//   );
+// }
 
 export function ButtonDrop({
   btnId,
