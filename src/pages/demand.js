@@ -8,7 +8,7 @@ import { InputGlobal } from "../components/inputs";
 import { Navigator } from "../router/navigator";
 import { useHistory } from "react-router";
 import { GetProducts } from "../services/data";
-import { ItemsSalon } from "../components/products";
+import { ItemsSalon, ItemBurger } from "../components/products";
 
 export default function Demand() {
   const history = useHistory();
@@ -16,22 +16,27 @@ export default function Demand() {
 
   const [menu, setMenu] = useState("breakfast");
   const [breakfast, setBreakfast] = useState([]);
-  const [burguers, setBurguers] = useState([]);
+  const [simpleBurgers, setSimpleBurgers] = useState([]);
+  const [doubleBurgers, setDoubleBurgers] = useState([]);
   const [sides, setSides] = useState([]);
   const [drinks, setDrinks] = useState([]);
- 
+
   const [table, setTable] = useState();
   const [note, setNote] = useState();
   const [payment] = useState("valor total");
-  
+
   useEffect(() => {
-  GetProducts(userToken).then((list)=>{
+    GetProducts(userToken).then((list) => {
       setBreakfast(list.filter((item) => item.type === "breakfast"));
-      setBurguers(list.filter((item) => item.sub_type === "hamburguer"))
-      setSides(list.filter((item) => item.sub_type === "side"))
-      setDrinks(list.filter((item) => item.sub_type === "drinks"))
-    })
-  }, []);
+      const hamb = list.filter((item) => item.sub_type === "hamburguer");
+      setSimpleBurgers(
+        hamb.filter((item) => item.name === "Hambúrguer simples")
+      );
+      setDoubleBurgers(list.filter((item) => item.name === "Hambúrguer duplo"));
+      setSides(list.filter((item) => item.sub_type === "side"));
+      setDrinks(list.filter((item) => item.sub_type === "drinks"));
+    });
+  }, [userToken]);
 
   return (
     <div className="demand" data-demand="demand">
@@ -70,54 +75,88 @@ export default function Demand() {
             />
             <ButtonOption
               btnId="allDayMenu"
-              btnClassName="allDay Burguers"
-              option="Hambúrgueres"
-              btnAction={() => setMenu("burgues")}
+              btnClassName="allDay Burgers"
+              option="hambúrgueres"
+              btnAction={() => setMenu("burgers")}
             />
             <ButtonOption
               btnId="allDayMenu"
               btnClassName="allDay Side"
-              option="Acompanhamentos"
+              option="acompanhamentos"
               btnAction={() => setMenu("sides")}
             />
             <ButtonOption
               btnId="allDayMenu"
               btnClassName="allDay Drink"
-              option="Bebidas"
+              option="bebidas"
               btnAction={() => setMenu("drinks")}
             />
           </nav>
-          {menu === "breakfast" ? (
-            <div className="menuBreakfast">
-              {
-                breakfast.map(item => {
-                  return (
-                    <ItemsSalon
-                      itemsOnChange={(event) => console.log(event.target.value)}
-                      amount={Number}
-                      editContent={true}
-                      itemName={item.name}
-                      itemPrice={item.price}
-                    />
-                  );
-                })}
-            </div>
-          ) : (
-            <div className="menuAllDay">
-              {
-                burguers.map(item => {
-                  return (
-                    <ItemsSalon
-                      itemsOnChange={(event) => console.log(event.target.value)}
-                      amount={console.log("amount")}
-                      editContent={true}
-                      itemName={item.name}
-                      itemPrice={item.price}
-                    />
-                  );
-                })}
-            </div>
-          )}
+          {menu === "breakfast" &&
+            breakfast.map((item) => {
+              return (
+                <ItemsSalon
+                  amountOnChange={(event) => event.target.value}
+                  amount={console.log("amount breakfast")}
+                  editContent={true}
+                  itemName={item.name}
+                  itemPrice={"R$ " + item.price}
+                />
+              );
+            })}
+          {menu === "burgers" &&
+            simpleBurgers.map((item) => {
+              return (
+                <ItemBurger
+                  amountOnChange={console.log("item")}
+                  amount={console.log("amount")}
+                  editContent={true}
+                  itemFlavor={"burguer "+item.flavor}
+                  itemComplement={item.complement}
+                  itemPrice={"R$ " + item.price}
+                  burgerOption={"S"}
+                />
+              );
+            })
+            }
+            {menu === "burgers" &&
+            doubleBurgers.map((item) => {
+              return (
+                <ItemBurger
+                  amountOnChange={console.log("item")}
+                  amount={console.log("amount")}
+                  editContent={true}
+                  itemFlavor={"burguer "+item.flavor}
+                  itemComplement={item.complement}
+                  itemPrice={"R$ " + item.price}
+                  burgerOption={"D"}
+                />
+              );
+            })}
+          {menu === "sides" &&
+            sides.map((item) => {
+              return (
+                <ItemsSalon
+                  amountOnChange={(event) => event.target.value}
+                  amount={console.log("amount breakfast")}
+                  editContent={true}
+                  itemName={item.name}
+                  itemPrice={"R$ " + item.price}
+                />
+              );
+            })}
+            {menu === "drinks" &&
+            drinks.map((item) => {
+              return (
+                <ItemsSalon
+                  amountOnChange={(event) => event.target.value}
+                  amount={console.log("amount breakfast")}
+                  editContent={true}
+                  itemName={item.name}
+                  itemPrice={"R$ " + item.price}
+                />
+              );
+            })}
         </table>
         <div className="takeNote">
           <img src={noteIcon} alt="Adicionar observação" />
@@ -132,10 +171,20 @@ export default function Demand() {
             row="10"
           />
         </div>
+        <div className="buttonsDemand">
+        <ButtonBack
+          btnClass="btnBack salonBack"
+          btnAction={() => Navigator(history, "/home")}
+        />
+        <ButtonConfirm
+          btnClassName="btnConfirm salonConfirm"
+          btnText="FECHAR PEDIDO"
+          btnAction={() => console.log("clicou no butao")}
+        />
+      </div>
       </main>
       <table className="receiptTable">
         <h2 className="titleReceipt">R E C I B O</h2>
-        <hr />
         <div className="itemsSelected">
           <InputGlobal
             dataInput="amountSelected"
@@ -150,17 +199,7 @@ export default function Demand() {
         </div>
         <p className="payment"> Total: R${payment}</p>
       </table>
-      <div className="buttonsDemand">
-        <ButtonBack
-          btnClass="btnBack salonBack"
-          btnAction={() => Navigator(history, "/home")}
-        />
-        <ButtonConfirm
-          btnClassName="btnConfirm salonConfirm"
-          btnText="FECHAR PEDIDO"
-          btnAction={() => console.log("clicou no butao")}
-        />
-      </div>
+      
     </div>
   );
 }

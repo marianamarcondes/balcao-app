@@ -13,6 +13,12 @@
   width: 60vh;
   margin-top: 3%;
 }
+.mainDemand {
+  width: 60%;
+  display: flex;
+  flex-flow: column wrap;
+  margin-top: 3%;
+}
 .selectTable {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -26,12 +32,6 @@
   font-size: 100%;
   text-align: center;
   border: solid 2px var(--light-blue);
-}
-.mainDemand {
-  width: 60%;
-  display: flex;
-  flex-flow: column wrap;
-  margin-top: 3%;
 }
 .menuTable {
   border: solid 2px var(--light-blue);
@@ -47,37 +47,39 @@
   width: 100%;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
-  font-size: 80%;
+  font-size: 100%;
   font-family: "Montserrat" sans-serif;
   font-weight: 600;
   margin-bottom: 5%;
-  text-align: initial;
+  padding-bottom: 5%;
 }
 .morningMenu:hover,
-.allDay:hover {
+.allDay:hover,
+.morningMenu:focus,
+.allDay:focus {
   background-color: var(--normal-blue);
+  box-shadow: var(--inner-shadow);
 }
 .morningMenu {
   background: url("../img/coffe-menu.svg") no-repeat var(--extra-lightblue);
-  background-position: 75%;
-  background-size: 20px;
+  background-position: 50% 82%;
+  background-size: 25px;
 }
-.Burguers {
+.Burgers {
   background: url("../img/burguer.svg") no-repeat var(--extra-lightblue);
-  background-position: 90%;
-  background-size: 20px;
+  background-position: 50% 82%;
+  background-size: 27px;
 }
 .Side {
   background: url("../img/fries.svg") no-repeat var(--extra-lightblue);
-  background-position: 95%;
-  background-size: 20px;
+  background-position: 50% 82%;
+  background-size: 25px;
 }
 .Drink {
   background: url("../img/drink.svg") no-repeat var(--extra-lightblue);
-  background-position: 90%;
-  background-size: 27px;
+  background-position: 50% 85%;
+  background-size: 33px;
 }
-
 .itemsMenu {
   width: 100%;
   display: flex;
@@ -85,11 +87,11 @@
   align-items: center;
 }
 .amount {
-  width: 12%;
+  width: 17%;
   text-align: center;
   font-size: 24px;
   color: #000;
-  margin: 2% 0 2% 2%;
+  margin: 2%;
   padding: 0.5%;
 }
 .amount:hover {
@@ -99,44 +101,47 @@
 }
 .itemName {
   background: var(--light-grey);
-  width: 80%;
+  width: 50%;
   padding: 1%;
-  margin: 2% 1% 2% 1.5%;
+  margin: 2%;
   border-radius: 20px;
   text-align: center;
   font-family: "Montserrat" sans-serif;
 }
 .itemPrice {
   font-weight: 600;
-  margin-right: 2%;
+  margin-inline: 20px;
   border-bottom: solid 2px var(--light-grey);
 }
 .receiptTable {
-  width: 35%;
-  margin: 2% 2% 0 3%;
   display: flex;
   flex-flow: column nowrap;
-  border: solid 2px var(--grey-dark);
+  background: url("../img/receipt.png") no-repeat;
+  background-size: cover;
+  width: 37%;
+  height: 188vh;
+  margin: 4% 0 4% 3%;
 }
 .titleReceipt {
   text-align: center;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: 400;
-  margin: 2% 1% 3% 1%;
+  margin: 10% 1% 3% 1%;
 }
 .itemsSelected {
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  margin: 2%;
+  margin: 20% 5%;
 }
 .amountSelected {
   border: none;
   text-align: center;
-  font-size: 18px;
+  font-size: 25px;
   color: #000;
   width: 10%;
   margin: 2% 1% 2% 4%;
+  background-color: #f7f7eb;
 }
 
 .itemNameReceipt {
@@ -145,23 +150,25 @@
   margin-right: 4%;
 }
 .takeNote {
-  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  margin-top: 5%;
+  padding: 7%;
+  margin-top: 10%;
   margin-left: 4%;
 }
 .takeNote img {
   border: none;
-  width: 10%;
+  width: 24%;
 }
 .addNote {
   width: 70%;
   padding: 2%;
   resize: none;
   text-align: center;
+  font-size: 20px;
+  height: 20vh;
 }
 .payment {
   width: 100%;
@@ -174,8 +181,7 @@
   width: 100%;
   display: flex;
   flex-flow: row nowrap;
-  justify-content: end;
-  margin-right: 3%;
+  justify-content: space-evenly;
 }
 .salonBack {
   width: 10%;
@@ -186,20 +192,53 @@
   padding: 1%;
   margin: 3% 2% 3% 2%;
 }
+.burgerOption{
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--normal-blue);
+  padding-left: 30px;
+}
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+  .demand {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 100%;
+  }
+  .mainDemand {
+    width: 100%;
+    align-items: center;
+  }
+  .menuTable {
+    margin: auto;
+  }
+  .menuTab {
+    justify-content: space-around;
+  }
   .morningMenu,
   .allDay {
     display: flex;
     flex-flow: column wrap;
-    background-position: 23px 43px;
-    height: 15vh;
+    justify-content: center;
+    height: 34vh;
   }
-
-  .amount {
-    width: 25%;
+  .takeNote {
+    width: 80%;
+    margin: 1% auto;
   }
   .takeNote img {
-    width: 15%;
+    width: 12%;
+  }
+  .receiptTable {
+    width: 70%;
+    margin: auto;
+  }
+  .titleReceipt {
+    margin: 10% 0% 3% 5%;
+  }
+  .buttonsDemand {
+    top: 155vh;
+    justify-content: center;
+    margin: 2%;
   }
 }
