@@ -11,4 +11,16 @@ const userAdmin = {
 }
 console.log(userAdmin.role)
 
+const mariSalon = {
+  "email": "marisalon@email.com",
+  "pass": "424434"
+}
 
+console.log(mariSalon)
+
+const mariKitchen = {
+  "email": "marikitchen@email.com",
+  "pass": "324734"
+}
+
+console.log(mariKitchen)

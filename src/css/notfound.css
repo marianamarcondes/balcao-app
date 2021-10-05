@@ -1,0 +1,23 @@
+.notfound{
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    background: var(--green-green);
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-size: 20px;
+    font-family: "Montserrat", sans-serif;
+}
+.title404{
+ margin-top: 3%;
+ font-size: 70px;
+}
+.imgNotFound{
+    width: 25%;
+}
+.textNotFound{
+  margin: 3%;
+}

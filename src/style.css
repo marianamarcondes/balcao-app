@@ -1,4 +1,5 @@
-* , body {
+*,
+body {
   margin: 0;
   padding: 0;
   font-family: "Montserrat", sans-serif;
@@ -13,7 +14,7 @@
   --normal-blue: #3075b3;
   --light-grey: #c1c1c1b7;
   --grey-grey: #c1c1c1;
-  --grey-dark: #959AA9;
+  --grey-dark: #959aa9;
   --green-green: #6aa06b;
   --green-dark: #458447;
   --black-black: #000;
@@ -32,31 +33,32 @@ button {
   font-size: 100%;
   cursor: pointer;
 }
-button:hover{
+button:hover {
   box-shadow: var(--inner-shadow);
 }
 .btnConfirm {
- background: var(--green-green);
+  background: var(--green-green);
 }
-.btnConfirm:hover{
-background: var(--green-dark);
+.btnConfirm:hover {
+  background: var(--green-dark);
 }
-.btnCancel:hover, .btnBack:hover{
-background: var(--grey-dark);
+.btnCancel:hover,
+.btnBack:hover {
+  background: var(--grey-dark);
 }
-.btnInsideTable{
- background: var(--normal-blue);
+.btnInsideTable {
+  background: var(--normal-blue);
 }
-.btnBack{
-display: flex;
-align-items: center;
-justify-content: center;
-width: 8%;
+.btnBack {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 8%;
 }
-.btnDrop{
- border-radius: 0;
+.btnDrop {
+  border-radius: 0;
 }
-.requestHour{
+.requestHour {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
@@ -67,22 +69,8 @@ width: 8%;
   font-family: "Montserrat", sans-serif;
   font-weight: 600;
 }
-.modal{
-  display: flex;
-  flex-flow: column nowrap;
-  justify-content: center;
-  align-items: center;
-  width: 30%;
-  padding: 2%;
-  font-family: "Montserrat", sans-serif;
-  font-size: 32px;
-  font-weight: 600;
-  text-align: center;
-  border: solid 7px var(--extra-lightblue);
-  border-radius: 10px;
-  box-shadow: var(--drop-shadow);
-}
-.options{
+
+.options {
   background: var(--extra-lightblue);
   width: 100%;
   margin: 2%;
@@ -91,17 +79,18 @@ width: 8%;
   cursor: pointer;
   background: var(--normal-blue);
 }
-.endButtons{
- display: flex;
- justify-content: space-evenly;
- width: 100%;
- padding: 15% 0 0 0;
+.endButtons {
+  display: flex;
+  justify-content: space-evenly;
+  width: 100%;
+  padding: 15% 0 0 0;
 }
-.btnCancel, .btnConfirm{
+.btnCancel,
+.btnConfirm {
   padding: 3%;
   font-size: 100%;
 }
-.resetInput{
+.resetInput {
   border: none;
   background: var(--light-grey);
   width: 100%;
@@ -109,14 +98,14 @@ width: 8%;
   padding: 1%;
   font-size: 100%;
   font-weight: 600;
-  color:#000;
+  color: #000;
 }
-.resetInput::placeholder{
+.resetInput::placeholder {
   text-align: center;
   font-family: "Montserrat", sans-serif;
   color: #000;
 }
-.inputLogin{
+.inputLogin {
   display: flex;
   width: 63%;
   padding: 1%;
@@ -127,22 +116,81 @@ width: 8%;
   border: solid 3px var(--light-blue);
   padding: 1%;
 }
-.inputGlobal::placeholder{
+.inputGlobal::placeholder {
   text-align: center;
   font-family: "Montserrat", sans-serif;
   color: var(--grey-dark);
 }
 
-input[type=number]::-webkit-inner-spin-button { 
-  all: unset; 
+input[type="number"]::-webkit-inner-spin-button {
+  all: unset;
   min-width: 21px;
   min-height: 45px;
   margin: 15%;
   padding: 0;
-  background-image: 
-  linear-gradient(to top, transparent 0px, transparent 16px, #fff 16px, #fff 26px, transparent 26px, transparent 35px, #000 35px,#000 36px,transparent 36px, transparent 40px),
-  linear-gradient(to right, transparent 0px, transparent 10px, #000 10px, #000 11px, transparent 11px, transparent 21px);
+  background-image: linear-gradient(
+      to top,
+      transparent 0px,
+      transparent 16px,
+      #fff 16px,
+      #fff 26px,
+      transparent 26px,
+      transparent 35px,
+      #000 35px,
+      #000 36px,
+      transparent 36px,
+      transparent 40px
+    ),
+    linear-gradient(
+      to right,
+      transparent 0px,
+      transparent 10px,
+      #000 10px,
+      #000 11px,
+      transparent 11px,
+      transparent 21px
+    );
   transform: rotate(90deg) scale(0.8, 0.9);
-  cursor:pointer;
-} 
+  cursor: pointer;
+}
 
+.modal {
+  display: block;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.modalInside {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgba(255, 255, 255, 0.932);
+  border: solid 5px var(--normal-blue);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 45%;
+  padding: 10px 20px;
+  border-radius: 5px;
+
+  box-shadow: var(--drop-shadow);
+  font-size: 1.5rem;
+  animation-name: animatemodal;
+  animation-duration: 0.4s;
+}
+
+@keyframes animatemodal {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}

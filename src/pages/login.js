@@ -1,7 +1,6 @@
 import "../css/login.css";
 import { useState, useEffect} from "react";
 import { useHistory } from "react-router";
-import { Navigator } from "../router/navigator";
 import { InputLogin } from "../components/inputs";
 import { Select, SelectOption } from "../components/select";
 import { ButtonConfirm } from "../components/buttons";
@@ -15,10 +14,14 @@ export default function Login() {
   const [passLogin, setPassLogin] = useState("");
   const [workerInfo, setWorkerInfo] = useState({});
 
+  const [emailPlaceholder, setEmailPlaceholder]= useState("email@exemplo.com");
+  const [passPlaceholder, setPassPlaceholder] = useState("insira sua senha");
+  const [selection, setSelection] = useState("selecione o cargo");
+  
   useEffect(() => {
     setWorkerInfo({emailLogin, occupationLogin, passLogin});
   }, [emailLogin, occupationLogin, passLogin]);
-  
+ 
   return (
     <div className="login" data-login="login">
       <header className="logoLogin">
@@ -37,7 +40,7 @@ export default function Login() {
                 disabled
                 selected
                 optionValue="tag"
-                option="selecione o cargo"
+                option={selection}
               />
               <SelectOption optionValue="waiter" option="Garçom/Garçonete" />
               <SelectOption optionValue="chef" option="Chef de cozinha" />
@@ -51,7 +54,7 @@ export default function Login() {
           inputValue={emailLogin}
           inputId="inputLoginEmail"
           inputType="email"
-          inputPlaceHolder="email@exemplo.com"
+          inputPlaceHolder={emailPlaceholder}
         />
         <InputLogin
           dataInput="passLogin"
@@ -59,12 +62,24 @@ export default function Login() {
           inputValue={passLogin}
           inputId="inputLoginPass"
           inputType="password"
-          inputPlaceHolder="insira sua senha"
+          inputPlaceHolder={passPlaceholder}
         />
         <ButtonConfirm
           btnClassName="btnConfirm loginPage"
           btnText="ENTRAR"
-          btnAction={()=> LoginWorker(workerInfo).then((Navigator(history, "/home")))}
+          btnAction={(event)=> {
+            if (occupationLogin === "" || occupationLogin === null){
+             setSelection("Por favor, informe o cargo.")
+            }
+            if(emailLogin === "" || emailLogin.length > 5 || emailLogin === null){
+             setEmailPlaceholder("Por favor, insira um email.");
+            }
+            if (passLogin === "" || passLogin.length > 6 || passLogin === null){
+              setPassPlaceholder("Por favor, insira uma senha válida.")
+            }
+            else {
+            LoginWorker(workerInfo, history)}
+          }}
         />
       </main>
     </div>

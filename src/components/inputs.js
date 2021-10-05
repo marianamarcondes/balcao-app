@@ -53,7 +53,6 @@ export function InputLogin({
 
 export function InputGlobal({
   inputName,
-  dataInput,
   inputOnChange,
   inputValue,
   inputGlobalId,
@@ -66,7 +65,6 @@ export function InputGlobal({
     <input
       min="0"
       name={inputName}
-      data-item={dataInput}
       onChange={inputOnChange}
       value={inputValue}
       id={inputGlobalId}

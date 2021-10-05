@@ -1,3 +1,6 @@
+import { Navigator } from "../router/navigator";
+import { refreshPage } from "../utils/simpleFunc";
+
 export const RegisterWorker = async (workerFile) => {
   try {
     const response = await fetch("https://lab-api-bq.herokuapp.com/users", {
@@ -17,7 +20,7 @@ export const RegisterWorker = async (workerFile) => {
     localStorage.setItem("workerToken", token);
     localStorage.setItem("workerEmail", email);
     if (token) {
-      console.log("Usuário cadastrado!");
+      refreshPage();
     }
   } catch (json) {
     const code = json.code;
@@ -27,7 +30,7 @@ export const RegisterWorker = async (workerFile) => {
   }
 };
 
-export const LoginWorker = async (workerInfo) => {
+export const LoginWorker = async (workerInfo, history) => {
   try {
     const response = await fetch("https://lab-api-bq.herokuapp.com/auth", {
       method: "POST",
@@ -39,6 +42,7 @@ export const LoginWorker = async (workerInfo) => {
         password: workerInfo.passLogin,
       }),
     });
+
     const json = await response.json();
     const token = json.token;
     const email = json.email;
@@ -46,13 +50,35 @@ export const LoginWorker = async (workerInfo) => {
     localStorage.setItem("workerToken", token);
     localStorage.setItem("workerEmail", email);
     localStorage.setItem("workerOccupation", occupation);
+
     if (token) {
-     console.log("Usuário logado")
+      if (occupation === "salon") {
+        Navigator(history, "/home");
+      }
+      if (occupation === "kitchen") {
+        Navigator(history, "/chef");
+      } else {
+        Navigator(history, "/register");
+      }
     }
-  } catch(json) {
+  } catch (json) {
     const code = json.code;
     if (code === 400 || code === 403) {
       throw new Error(json.message);
     }
   }
+};
+
+export const isAuth = () => {
+  const token = localStorage.getItem("workerToken");
+  if (token) {
+    return true;
+  } else {
+    return false;
+  }
+};
+
+export const Logout = (history) => {
+  localStorage.clear();
+  Navigator(history, "/");
 };

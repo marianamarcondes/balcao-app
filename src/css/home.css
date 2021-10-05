@@ -3,9 +3,10 @@
   flex-flow: column nowrap;
   align-items: center;
   background-color: var(--extra-lightblue);
+  height: 100vh;
 }
 .logoHome {
-  margin: 5% auto 7% auto;
+  margin: 3% auto 4% auto;
 }
 .logoHome img {
   width: 60vh;
@@ -32,7 +33,7 @@
 .logOffHome {
   padding: 2%;
   width: 10%;
-  margin: 2%;
+  margin: 0;
 }
 
 @media (max-width: 600px) {

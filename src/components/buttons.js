@@ -1,4 +1,6 @@
-import React from "react";
+import {React, useState} from "react";
+import abrirSelecaoAzul from "../img/abrir-selecao-azul.png"
+import fecharSelecaoAzul from "../img/fechar-selecao-azul.png"
 
 export function ButtonCancel({ btnClassName, btnAction, btnText }) {
   return (
@@ -34,27 +36,23 @@ export function ButtonBack({ btnClass, btnAction }) {
   );
 }
 
-// export function ButtonInsideTable({ btnText, btnAction }) {
-//   return (
-//     <button
-//       id="btnInsideTable"
-//       className="btnInsideTable"
-//       type="button"
-//       onClick={btnAction}
-//     >
-//       {btnText}
-//     </button>
-//   );
-// }
-
 export function ButtonDrop({
   btnId,
   btnClassName,
   btnType,
   btnAction,
-  imgBtnDrop,
-  btnImg
-}) {
+  ClassImgBtnDrop}) {
+
+  const [drop, setDrop] = useState(abrirSelecaoAzul);
+
+  const ShowItems = () => {
+   if (drop === abrirSelecaoAzul){
+     setDrop(fecharSelecaoAzul);
+   }
+   else {
+    setDrop(abrirSelecaoAzul);
+    }
+  };
   return (
     <button
       id={btnId}
@@ -62,7 +60,7 @@ export function ButtonDrop({
       type={btnType}
       onClick={btnAction}
     >
-      <img className={imgBtnDrop} src={btnImg} alt="Botão de Exibição" />
+      <img onClick={ShowItems} className={ClassImgBtnDrop} src={drop} alt="Botão de Exibição" />
     </button>
   );
 }
@@ -79,3 +77,16 @@ export function ButtonOption({ btnId, btnClassName, option, btnAction }) {
     </button>
   );
 }
+
+// export function ButtonInsideTable({ btnText, btnAction }) {
+//   return (
+//     <button
+//       id="btnInsideTable"
+//       className="btnInsideTable"
+//       type="button"
+//       onClick={btnAction}
+//     >
+//       {btnText}
+//     </button>
+//   );
+// }

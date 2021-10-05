@@ -1,9 +1,10 @@
-import { React, useEffect, useState } from "react";
+import { React } from "react";
 import iconTime from "../img/icon-time.svg";
-// import { ButtonDrop } from "./buttons";
+import { ButtonDrop } from "./buttons";
 import { InputGlobal } from "./inputs";
 
 export function ItemsSalon({
+  dataItemMenu,
   amountOnChange,
   amount,
   editContent,
@@ -12,9 +13,8 @@ export function ItemsSalon({
 }) {
   return (
     <>
-      <div className="itemsMenu">
+      <div className="itemsMenu" data-item={dataItemMenu}>
         <InputGlobal
-          dataInput="amount"
           inputOnChange={amountOnChange}
           inputValue={amount}
           inputClassName="amount"
@@ -31,6 +31,7 @@ export function ItemsSalon({
 }
 
 export function ItemBurger({
+  dataItemMenu,
   amountOnChange,
   amount,
   editContent,
@@ -39,17 +40,15 @@ export function ItemBurger({
   itemPrice,
   burgerOption,
 }) {
-
   let conect = " com ";
-  if(itemComplement === null){
+  if (itemComplement === null) {
     conect = "";
   }
-  
+
   return (
     <>
-      <div className="itemsMenu">
+      <div className="itemsMenu" data-itemMenu={dataItemMenu}>
         <InputGlobal
-          dataInput="amount"
           inputOnChange={amountOnChange}
           inputValue={amount}
           inputClassName="amount"
@@ -69,14 +68,21 @@ export function ItemBurger({
     </>
   );
 }
-export function ItemsKitchen({ orderTime, table }) {
+export function ItemTable({ orderTime, table, classBtnDrop, btnDropAction }) {
   return (
-    <div className="itemsMenu">
+    <div className="itemsTable">
       <div className="orderTime">
         <img src={iconTime} alt="Horário que o pedido foi feito" />
         <p>{orderTime}</p>
       </div>
       <p className="numberTable">{table}</p>
+      <ButtonDrop
+        btnId={"btnDrop"}
+        btnClassName={classBtnDrop}
+        btnType={"button"}
+        btnAction={btnDropAction}
+        ClassImgBtnDrop={"imgDropButton"}
+      />
     </div>
   );
 }

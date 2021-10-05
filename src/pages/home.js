@@ -4,6 +4,7 @@ import { Navigator } from "../router/navigator";
 import logoPreto from "../img/logo-preto.png";
 import logOffIcon from "../img/log-off-icon.svg";
 import { useHistory } from "react-router";
+import { Logout } from "../services/auth";
 
 export default function Home() {
   const history = useHistory();
@@ -27,7 +28,10 @@ export default function Home() {
         />
         <ButtonCancel
           btnClassName="logOffHome"
-          btnAction={() => Navigator(history, "/")}
+          btnAction={() => {
+            Logout();
+            Navigator(history, "/")}
+          }
           btnText={<img src={logOffIcon} alt="Sair - LogOff" />}
         />
       </main>

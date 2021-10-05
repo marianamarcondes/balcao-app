@@ -4,9 +4,8 @@ import { useHistory } from "react-router-dom";
 import { Select, SelectOption } from "../components/select";
 import { InputGlobal } from "../components/inputs";
 import { ButtonCancel, ButtonConfirm } from "../components/buttons";
-import { tempPassword, refreshPage } from "../utils/simpleFunc";
-import { Navigator } from "../router/navigator";
-import { RegisterWorker } from "../services/auth";
+import { tempPassword } from "../utils/simpleFunc";
+import { Logout, RegisterWorker } from "../services/auth";
 import tituloCadastro from "../img/titulo-cadastro.png";
 
 export default function Register() {
@@ -15,7 +14,10 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [workerFile, setWorkerFile] = useState({});
-
+  
+  const [selectRegister, setSelecRegister] = useState("selecione o cargo");
+  const [namePlaceholder, setNamePlaceholder] = useState("João da Silva Santos");
+  const [emailPlaceholder, setEmailPlaceholder] = useState("exemplo@email.com");
   useEffect(() => {
     setWorkerFile({occupation, name, email, tempPassword});
   }, [occupation, name, email]);
@@ -38,7 +40,7 @@ export default function Register() {
                 disabled
                 selected
                 optionValue="tag"
-                option="selecione o cargo"
+                option={selectRegister}
               />
               <SelectOption optionValue="waiter" option="Garçom/Garçonete" />
               <SelectOption optionValue="chef" option="Chef de cozinha" />
@@ -52,7 +54,7 @@ export default function Register() {
           inputValue={name}
           inputClassName="inputGlobal registerName"
           inputGlobalType="text"
-          inputGlobalPlaceHolder="João da Silva Santos"
+          inputGlobalPlaceHolder={namePlaceholder}
           inputContentEdit="true"
         />
         <p>email</p>
@@ -62,7 +64,7 @@ export default function Register() {
           inputValue={email}
           inputClassName="inputGlobal registerEmail"
           inputGlobalType="email"
-          inputGlobalPlaceHolder="exemplo@email.com"
+          inputGlobalPlaceHolder={emailPlaceholder}
           inputContentEdit="true"
         />
         <p className="firstPassRegister">
@@ -76,12 +78,24 @@ export default function Register() {
           <ButtonCancel
             btnClassName="btnCancel registerExit"
             btnText="SAIR"
-            btnAction={() => Navigator(history, "/")}
+            btnAction={() => Logout(history)}
           />
           <ButtonConfirm
             btnClassName="btnConfirm registerAdd"
             btnText="CONFIRMAR"
-            btnAction={() => RegisterWorker(workerFile).then(refreshPage())}
+            btnAction={() => {
+              if (occupation === "" || occupation === null){
+                setSelecRegister("Por favor, insira o cargo.")
+              }
+              if (name === "" || name === null || name.length > 8){
+                setNamePlaceholder("Por favor, insira o nome completo.")
+              }
+              if(email === "" || email === null || email.length > 5 ){
+                setEmailPlaceholder("Por favor, insira um email válido.")
+              }
+              else {
+              RegisterWorker(workerFile)}
+            }}
           />
         </div>
       </main>
