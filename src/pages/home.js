@@ -29,9 +29,8 @@ export default function Home() {
         <ButtonCancel
           btnClassName="logOffHome"
           btnAction={() => {
-            Logout();
-            Navigator(history, "/")}
-          }
+            Logout(history);
+          }}
           btnText={<img src={logOffIcon} alt="Sair - LogOff" />}
         />
       </main>

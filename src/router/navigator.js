@@ -1,4 +1,4 @@
-export const Navigator = (history, path) => {
+export function Navigator(history, path){
   history.push(path);
 }
 

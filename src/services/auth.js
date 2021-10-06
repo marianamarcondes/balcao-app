@@ -55,9 +55,10 @@ export const LoginWorker = async (workerInfo, history) => {
       if (occupation === "salon") {
         Navigator(history, "/home");
       }
-      if (occupation === "kitchen") {
+      else if (occupation === "kitchen") {
         Navigator(history, "/chef");
-      } else {
+      } 
+      else {
         Navigator(history, "/register");
       }
     }

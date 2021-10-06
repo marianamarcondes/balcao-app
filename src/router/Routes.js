@@ -7,7 +7,7 @@ import Demand from "../pages/demand";
 import Ready from "../pages/ready";
 import Chef from "../pages/chef";
 import NotFound from "../pages/notfound";
-import { PrivateRoute } from "../router/privateRoutes";
+import PrivateRoutes from "../router/privateRoutes";
 
 export default function Routes() {
   return (
@@ -15,11 +15,11 @@ export default function Routes() {
       <Switch>
         <Route component={Login} path="/" exact />
         <Route component={NotFound} path="/notfound" />
-        <PrivateRoute component={Register} path="/register" />
-        <PrivateRoute component={Home} path="/home" />
-        <PrivateRoute component={Demand} path="/demand" />
-        <PrivateRoute component={Ready} path="/ready" />
-        <PrivateRoute component={Chef} path="/chef" />
+        <PrivateRoutes component={Register} path="/register" />
+        <PrivateRoutes component={Home} path="/home" />
+        <PrivateRoutes component={Demand} path="/demand" />
+        <PrivateRoutes component={Ready} path="/ready" />
+        <PrivateRoutes component={Chef} path="/chef" />
       </Switch>
     </BrowserRouter>
   );

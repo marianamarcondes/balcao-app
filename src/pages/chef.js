@@ -1,8 +1,8 @@
 import { useHistory } from "react-router";
-import { ButtonBack } from "../components/buttons";
+import { ButtonCancel } from "../components/buttons";
 import { ItemTable } from "../components/products";
-import {Navigator} from "../router/navigator"
 import logoPreto from "../img/logo-preto.png";
+import { Logout } from "../services/auth";
 
 export default function Chef() { 
   const history = useHistory();
@@ -20,10 +20,11 @@ export default function Chef() {
           btnDropAction={() => console.log("clicou no botao")}
         />
       </table>
-      <ButtonBack
-      btnClass={"btnBack"}
-      btnAction={() => Navigator(history, "/home")}
-      />
+     <ButtonCancel
+     btnClassName={"btnCancel"}
+    btnAction={()=> Logout(history)}
+    btnText={"SAIR"}
+          /> 
     </div>
     );
   
