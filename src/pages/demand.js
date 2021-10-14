@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ButtonBack, ButtonConfirm, ButtonOption } from "../components/buttons";
 import { Navigator } from "../router/navigator";
 import { useHistory } from "react-router";
-import { GetProducts } from "../services/data";
+import { GetProducts, NewOrder } from "../services/data";
 import { ItemsSalon, ItemBurger } from "../components/products";
 import { PopUpNote, Receipt } from "../components/popups";
 
@@ -40,7 +40,7 @@ export default function Demand() {
       setDrinks(products.filter((item) => item.sub_type === "drinks"));
     });
   }, [userToken]);
-
+  
   const addItem = (item, event) => {
     const findItem = cart.find((elemento) => elemento.id === item.id);
     const indexItem = cart.indexOf(findItem);
@@ -52,15 +52,6 @@ export default function Demand() {
       setCart([...cart, item]);
     }
   };
-  // const removeItem = (item, event) => {
-  //   const item = cart.find((elemento) => elemento.id === item.id);
-  //   const indexItem = cart.indexOf(item);
-
-  //   if (item.qtd === 0) {
-  //     const deleteFromCart = cart.splice(indexItem, 1);
-  //     setCart(deleteFromCart);
-  //   }
-  // };
 
   return (
     <div className="demand" data-demand="demand">
@@ -184,10 +175,6 @@ export default function Demand() {
                 <ItemsSalon
                   dataItemMenu={item.id}
                   amountOnChange={(event) => {
-                    if (item.qtd === 0 || event.target.value === 0) {
-                      const deleteFromCart = cart.splice(item, 1);
-                      setCart(deleteFromCart);
-                    }
                     addItem(item, event);
                   }}
                   editContent={true}
@@ -224,8 +211,15 @@ export default function Demand() {
                 tableOption === "qual o número da mesa?"
               ) {
                 setTableOption("Preencha o número da mesa.");
-              } else {
-                setSeeReceipt("clickReceipt");
+              } else {    
+                const filterQtd = cart.filter((product) => {
+                  if (product.qtd > "0"){
+                   return true
+                  } 
+                  else{ return false}
+                })
+                setCart(filterQtd)     
+                setSeeReceipt("clickReceipt"); 
               }
             }}
           />
@@ -233,7 +227,7 @@ export default function Demand() {
             <Receipt
               arrCart={cart}
               btnCancel={() => setSeeReceipt("")}
-              btnConfirm={console.log("enviar para cozinha")}
+              btnConfirm={() =>  NewOrder()}
             />
           )}
         </div>

@@ -20,7 +20,6 @@ export const GetProducts = async (token) => {
 const host = "https://lab-api-bq.herokuapp.com";
 
 const access = (endpoint, method, body, token) => {
-  if (method !== "GET") {
     try {
       return fetch(`${host}${endpoint}`, {
         method,
@@ -36,18 +35,17 @@ const access = (endpoint, method, body, token) => {
         throw new Error(json.message);
       }
     }
-  }
-};
+  };
 
-export const NewOrder = (request, token) => {
-  console.log(request);
+export const NewOrder = (order, token) => {
+  console.log(order);
   return access(
     "/orders",
     "POST",
     {
-      client: request.client,
-      table: request.table,
-      products: request.products,
+      client: order.client,
+      table: order.table,
+      products: order.products,
     },
     token
   );
