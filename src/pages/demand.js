@@ -52,14 +52,15 @@ export default function Demand() {
       setCart([...cart, item]);
     }
   };
+  // const removeItem = (item, event) => {
+  //   const item = cart.find((elemento) => elemento.id === item.id);
+  //   const indexItem = cart.indexOf(item);
 
-  // function removeItem(item, event) {
-  //   const findItem = cart.find((elemento) => elemento.id === item.id);
-  //   const indexItem = cart.indexOf(findItem);
-  //  if (findItem){
-  //   cart[indexItem].qtd = event.target.value;
-  //   setCart(cart.splice(indexItem, 1));}
-  // }
+  //   if (item.qtd === 0) {
+  //     const deleteFromCart = cart.splice(indexItem, 1);
+  //     setCart(deleteFromCart);
+  //   }
+  // };
 
   return (
     <div className="demand" data-demand="demand">
@@ -123,11 +124,7 @@ export default function Demand() {
                 <ItemsSalon
                   dataItemMenu={item.id}
                   amountOnChange={(event) => {
-                    if (event.target.value >1) {
-                      setCart([cart.splice(item, 1)])
-                    } else {
-                      addItem(item, event);
-                    }
+                    addItem(item, event);
                   }}
                   editContent={true}
                   itemName={item.name}
@@ -141,12 +138,8 @@ export default function Demand() {
                 <ItemBurger
                   dataItemMenu={item.id}
                   amountOnChange={(event) => {
-                    if (event.target.value >1) {
-                      setCart([cart.splice(item, 1)])
-                    } else {
-                      addItem(item, event);
-                    }}
-                  }
+                    addItem(item, event);
+                  }}
                   editContent={true}
                   itemFlavor={"burger " + item.flavor}
                   itemComplement={item.complement}
@@ -161,12 +154,8 @@ export default function Demand() {
                 <ItemBurger
                   dataItemMenu={item.id}
                   amountOnChange={(event) => {
-                    if (event.target.value >1) {
-                      setCart([cart.splice(item, 1)])
-                    } else {
-                      addItem(item, event);
-                    }}
-                  }
+                    addItem(item, event);
+                  }}
                   editContent={true}
                   itemFlavor={"burger " + item.flavor}
                   itemComplement={item.complement}
@@ -181,12 +170,8 @@ export default function Demand() {
                 <ItemsSalon
                   dataItemMenu={item.id}
                   amountOnChange={(event) => {
-                    if (event.target.value >1) {
-                      setCart([cart.splice(item, 1)])
-                    } else {
-                      addItem(item, event);
-                    }}
-                  }
+                    addItem(item, event);
+                  }}
                   editContent={true}
                   itemName={item.name}
                   itemPrice={"R$ " + item.price}
@@ -199,11 +184,11 @@ export default function Demand() {
                 <ItemsSalon
                   dataItemMenu={item.id}
                   amountOnChange={(event) => {
-                    if (event.target.value >1) {
-                      setCart([cart.splice(item, 1)])
-                    } else {
-                      addItem(item, event);
+                    if (item.qtd === 0 || event.target.value === 0) {
+                      const deleteFromCart = cart.splice(item, 1);
+                      setCart(deleteFromCart);
                     }
+                    addItem(item, event);
                   }}
                   editContent={true}
                   itemName={item.name}
@@ -234,9 +219,9 @@ export default function Demand() {
             btnText="VER PEDIDO"
             btnAction={() => {
               if (
-                table === "" ||
-                table === null ||
-                table === "qual o número da mesa?"
+                tableOption === " " ||
+                tableOption === null ||
+                tableOption === "qual o número da mesa?"
               ) {
                 setTableOption("Preencha o número da mesa.");
               } else {
@@ -256,3 +241,6 @@ export default function Demand() {
     </div>
   );
 }
+
+// issues: [{number: 1, problem: "depois de selecionar item, se trocar de menu (ex café para bebidas")
+// e voltar para o primeiro (menu cafe) o placeholder aparece e não o valor que havia selecionado antes}]
