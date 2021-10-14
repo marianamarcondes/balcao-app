@@ -6,7 +6,6 @@ import { InputGlobal } from "./inputs";
 export function ItemsSalon({
   dataItemMenu,
   amountOnChange,
-  amount,
   editContent,
   itemName,
   itemPrice,
@@ -16,7 +15,6 @@ export function ItemsSalon({
       <div className="itemsMenu" data-item={dataItemMenu}>
         <InputGlobal
           inputOnChange={amountOnChange}
-          inputValue={amount}
           inputClassName="amount"
           inputGlobalType="number"
           inputGlobalPlaceHolder="0"

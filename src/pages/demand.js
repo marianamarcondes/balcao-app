@@ -11,25 +11,21 @@ import { PopUpNote, Receipt } from "../components/popups";
 export default function Demand() {
   const history = useHistory();
   const userToken = localStorage.getItem("workerToken");
-
+  const [clickNote, setClickNote] = useState("");
+  const [seeReceipt, setSeeReceipt] = useState("");
+  const [tableOption, setTableOption] = useState("qual o número da mesa?");
   const [menu, setMenu] = useState("breakfast");
+
+  const [table, setTable] = useState();
   const [breakfast, setBreakfast] = useState([]);
   const [simpleBurgers, setSimpleBurgers] = useState([]);
   const [doubleBurgers, setDoubleBurgers] = useState([]);
   const [sides, setSides] = useState([]);
   const [drinks, setDrinks] = useState([]);
+  const [obs, setObs] = useState("");
 
-  const [amountBreakfast] = useState();
-  const [amountSimpleBurgers] = useState();
-  const [amountDoubleBurgers] = useState();
-  const [amountSides] = useState();
-  const [amountDrinks] = useState();
+  const [cart, setCart] = useState([]);
 
-  const [table, setTable] = useState();
- 
-  const [clickNote, setClickNote] = useState();
-  const [seeReceipt, setSeeReceipt] = useState();
- 
   useEffect(() => {
     GetProducts(userToken).then((products) => {
       setBreakfast(products.filter((item) => item.type === "breakfast"));
@@ -37,16 +33,34 @@ export default function Demand() {
       setSimpleBurgers(
         hamb.filter((item) => item.name === "Hambúrguer simples")
       );
-      setDoubleBurgers(products.filter((item) => item.name === "Hambúrguer duplo"));
+      setDoubleBurgers(
+        products.filter((item) => item.name === "Hambúrguer duplo")
+      );
       setSides(products.filter((item) => item.sub_type === "side"));
       setDrinks(products.filter((item) => item.sub_type === "drinks"));
     });
-    
-  }, []);
+  }, [userToken]);
 
-  const [drinkSelected] = useState({});
-  console.log(drinkSelected);
-  
+  const addItem = (item, event) => {
+    const findItem = cart.find((elemento) => elemento.id === item.id);
+    const indexItem = cart.indexOf(findItem);
+    if (findItem) {
+      cart[indexItem].qtd = event.target.value;
+      setCart([...cart]);
+    } else {
+      item.qtd = event.target.value;
+      setCart([...cart, item]);
+    }
+  };
+
+  // function removeItem(item, event) {
+  //   const findItem = cart.find((elemento) => elemento.id === item.id);
+  //   const indexItem = cart.indexOf(findItem);
+  //  if (findItem){
+  //   cart[indexItem].qtd = event.target.value;
+  //   setCart(cart.splice(indexItem, 1));}
+  // }
+
   return (
     <div className="demand" data-demand="demand">
       <header className="headerDemand">
@@ -62,13 +76,13 @@ export default function Demand() {
                   disabled
                   selected
                   optionValue="tag"
-                  option="qual o número da mesa?"
+                  option={tableOption}
                 />
-                <SelectOption optionValue="one" option="Nº 1" />
-                <SelectOption optionValue="two" option="Nº 2" />
-                <SelectOption optionValue="three" option="Nº 3" />
-                <SelectOption optionValue="four" option="Nº 4" />
-                <SelectOption optionValue="five" option="Nº 5" />
+                <SelectOption optionValue="one" option="MESA 1" />
+                <SelectOption optionValue="two" option="MESA 2" />
+                <SelectOption optionValue="three" option="MESA 3" />
+                <SelectOption optionValue="four" option="MESA 4" />
+                <SelectOption optionValue="five" option="MESA 5" />
               </>
             }
           />
@@ -108,10 +122,13 @@ export default function Demand() {
               return (
                 <ItemsSalon
                   dataItemMenu={item.id}
-                  amountOnChange={(event) =>
-                    (event.target.value)
-                  }
-                  amount={amountBreakfast}
+                  amountOnChange={(event) => {
+                    if (event.target.value >1) {
+                      setCart([cart.splice(item, 1)])
+                    } else {
+                      addItem(item, event);
+                    }
+                  }}
                   editContent={true}
                   itemName={item.name}
                   itemPrice={"R$ " + item.price}
@@ -122,11 +139,14 @@ export default function Demand() {
             simpleBurgers.map((item) => {
               return (
                 <ItemBurger
-                dataItemMenu={item.id}
-                  amountOnChange={(event) =>
-                    (event.target.value)
+                  dataItemMenu={item.id}
+                  amountOnChange={(event) => {
+                    if (event.target.value >1) {
+                      setCart([cart.splice(item, 1)])
+                    } else {
+                      addItem(item, event);
+                    }}
                   }
-                  amount={amountSimpleBurgers}
                   editContent={true}
                   itemFlavor={"burger " + item.flavor}
                   itemComplement={item.complement}
@@ -140,10 +160,13 @@ export default function Demand() {
               return (
                 <ItemBurger
                   dataItemMenu={item.id}
-                  amountOnChange={(event) =>
-                    (event.target.value)
+                  amountOnChange={(event) => {
+                    if (event.target.value >1) {
+                      setCart([cart.splice(item, 1)])
+                    } else {
+                      addItem(item, event);
+                    }}
                   }
-                  amount={amountDoubleBurgers}
                   editContent={true}
                   itemFlavor={"burger " + item.flavor}
                   itemComplement={item.complement}
@@ -157,8 +180,13 @@ export default function Demand() {
               return (
                 <ItemsSalon
                   dataItemMenu={item.id}
-                  amountOnChange={(event) => (event.target.value)}
-                  amount={amountSides}
+                  amountOnChange={(event) => {
+                    if (event.target.value >1) {
+                      setCart([cart.splice(item, 1)])
+                    } else {
+                      addItem(item, event);
+                    }}
+                  }
                   editContent={true}
                   itemName={item.name}
                   itemPrice={"R$ " + item.price}
@@ -166,18 +194,17 @@ export default function Demand() {
               );
             })}
           {menu === "drinks" &&
-            drinks.map((item, event) => {
+            drinks.map((item) => {
               return (
                 <ItemsSalon
                   dataItemMenu={item.id}
-                  amountOnChange={() => {
-                    const drinkSelected = ({
-                    drinkId: item.id, 
-                    drinkName: item.name, 
-                    drinkPrice: item.price})
-                  }
-                 }
-                  amount={amountDrinks}
+                  amountOnChange={(event) => {
+                    if (event.target.value >1) {
+                      setCart([cart.splice(item, 1)])
+                    } else {
+                      addItem(item, event);
+                    }
+                  }}
                   editContent={true}
                   itemName={item.name}
                   itemPrice={"R$ " + item.price}
@@ -194,7 +221,7 @@ export default function Demand() {
         {clickNote === "clickNote" && (
           <PopUpNote
             closeNote={() => setClickNote("")}
-            saveNote={() => console.log("salvar obs")}
+            saveNote={(event) => setObs(event.target.value)}
           />
         )}
         <div className="buttonsDemand">
@@ -205,16 +232,23 @@ export default function Demand() {
           <ButtonConfirm
             btnClassName="btnConfirm salonConfirm"
             btnText="VER PEDIDO"
-            btnAction={() =>setSeeReceipt("clickReceipt") }
+            btnAction={() => {
+              if (
+                table === "" ||
+                table === null ||
+                table === "qual o número da mesa?"
+              ) {
+                setTableOption("Preencha o número da mesa.");
+              } else {
+                setSeeReceipt("clickReceipt");
+              }
+            }}
           />
           {seeReceipt === "clickReceipt" && (
             <Receipt
-            amount={"3"}
-            item={"burguer vegetariano com queijo"}
-            price={"5"}
-            payment={"5"}
-            closeOrder={() => setSeeReceipt("")}
-            confirmOrder={console.log("finalizar pedido")}
+              arrCart={cart}
+              btnCancel={() => setSeeReceipt("")}
+              btnConfirm={console.log("enviar para cozinha")}
             />
           )}
         </div>

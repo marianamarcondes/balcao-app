@@ -60,28 +60,39 @@ export function PopUpNote({ closeNote, saveNote }) {
   );
 }
 
-export function Receipt ({amount, item, price, payment, confirmOrder, closeOrder}) {
+export function Receipt({ arrCart, btnCancel, btnConfirm }) {
+ 
   return (
     <div id="modal" className="modal">
-    <div className="modalInside">
-      <h2 className="titleReceipt">comanda</h2>
-      <div className="itemsSelected">
-        <p className="itemReceipt"> {amount}x  {item} --- R$ {price}</p>
-      </div>
-      <p className="payment"> total: R$ {payment}</p>
-    <div className="endButtons">
+      <div className="modalInside">
+        <h2 className="titleReceipt">comanda</h2>
+
+        <div className="itemsSelected">
+          {arrCart.map((item) => {
+            return (
+              <p className="itemReceipt">
+                {item.qtd}x {item.name} --- R$ {item.price}
+              </p>
+            );
+          })}
+        </div>
+
+        <p className="payment"> total: R$ {"total"}</p>
+
+        <div className="endButtons">
           <ButtonCancel
             btnClassName="closeNote"
             btnText="FECHAR"
-            btnAction={closeOrder}
+            btnAction={btnCancel}
           />
+
           <ButtonConfirm
             btnClassName="saveNote"
             btnText="CONFIRMAR"
-            btnAction={confirmOrder}
+            btnAction={btnConfirm}
           />
-    </div>
-    </div>
+        </div>
+      </div>
     </div>
   );
-};
+}

@@ -9,6 +9,7 @@ import logoCinza from "../img/logo-cinza.png";
 
 export default function Login() {
   const history = useHistory();
+  
   const [emailLogin, setEmailLogin] = useState("");
   const [occupationLogin, setOccupationLogin] = useState("");
   const [passLogin, setPassLogin] = useState("");
