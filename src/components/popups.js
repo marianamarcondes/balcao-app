@@ -61,7 +61,17 @@ export function PopUpNote({ closeNote, saveNote }) {
 }
 
 export function Receipt({ arrCart, btnCancel, btnConfirm }) {
- 
+
+  const calcTotal = (array) => {
+    const totalPreco = array.reduce((acc, array) => {
+      const { qtd, price } = array;
+      acc = Number(qtd * price + acc);
+      return acc;
+    }, 0);
+    return totalPreco;
+  };
+  const total = calcTotal(arrCart);
+
   return (
     <div id="modal" className="modal">
       <div className="modalInside">
@@ -71,13 +81,13 @@ export function Receipt({ arrCart, btnCancel, btnConfirm }) {
           {arrCart.map((item) => {
             return (
               <p className="itemReceipt">
-                {item.qtd}x {item.name} --- R$ {item.price}
+                {item.qtd}x {item.name} - R$ {item.price}
               </p>
             );
           })}
         </div>
 
-        <p className="payment"> total: R$ {"total"}</p>
+        <p className="payment"> total: R$ {total}</p>
 
         <div className="endButtons">
           <ButtonCancel

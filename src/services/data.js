@@ -17,36 +17,31 @@ export const GetProducts = async (token) => {
   }
 };
 
-const host = "https://lab-api-bq.herokuapp.com";
-
-const access = (endpoint, method, body, token) => {
-    try {
-      return fetch(`${host}${endpoint}`, {
-        method,
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: token,
-        },
-        body: JSON.stringify(body),
-      });
-    } catch (json) {
-      const code = json.code;
-      if (code !== 200) {
-        throw new Error(json.message);
-      }
-    }
-  };
-
-export const NewOrder = (order, token) => {
-  console.log(order);
-  return access(
-    "/orders",
-    "POST",
-    {
-      client: order.client,
-      table: order.table,
-      products: order.products,
+export const NewOrder = async (token, email, table, products) => {
+  const order = await fetch("https://lab-api-bq.herokuapp.com/orders", {
+    method: "POST",
+    headers: {
+      accept: "application/json",
+      Authorization: token
     },
-    token
-  );
+    body: {
+      "client": email,
+      "table": table,
+      "products": products,
+    },
+  });
+  console.log(order)
+  return order;
+};
+
+export const getOrders = async (token) => {
+  const response = await fetch("https://lab-api-bq.herokuapp.com/orders", {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: token,
+    },
+  });
+  console.log(response);
+  return response
 };

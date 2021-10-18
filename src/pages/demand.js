@@ -6,12 +6,14 @@ import { Navigator } from "../router/navigator";
 import { useHistory } from "react-router";
 import { GetProducts, NewOrder } from "../services/data";
 import { ItemsSalon, ItemBurger } from "../components/products";
-import { PopUpNote, Receipt } from "../components/popups";
+import { Receipt } from "../components/popups";
 
 export default function Demand() {
   const history = useHistory();
+  const userEmail = localStorage.getItem("workerEmail");
   const userToken = localStorage.getItem("workerToken");
-  const [clickNote, setClickNote] = useState("");
+
+  // const [clickNote, setClickNote] = useState("");
   const [seeReceipt, setSeeReceipt] = useState("");
   const [tableOption, setTableOption] = useState("qual o número da mesa?");
   const [menu, setMenu] = useState("breakfast");
@@ -22,8 +24,7 @@ export default function Demand() {
   const [doubleBurgers, setDoubleBurgers] = useState([]);
   const [sides, setSides] = useState([]);
   const [drinks, setDrinks] = useState([]);
-  const [obs, setObs] = useState("");
-
+  // const [obs, setObs] = useState("");
   const [cart, setCart] = useState([]);
 
   useEffect(() => {
@@ -40,7 +41,7 @@ export default function Demand() {
       setDrinks(products.filter((item) => item.sub_type === "drinks"));
     });
   }, [userToken]);
-  
+
   const addItem = (item, event) => {
     const findItem = cart.find((elemento) => elemento.id === item.id);
     const indexItem = cart.indexOf(findItem);
@@ -70,11 +71,11 @@ export default function Demand() {
                   optionValue="tag"
                   option={tableOption}
                 />
-                <SelectOption optionValue="one" option="MESA 1" />
-                <SelectOption optionValue="two" option="MESA 2" />
-                <SelectOption optionValue="three" option="MESA 3" />
-                <SelectOption optionValue="four" option="MESA 4" />
-                <SelectOption optionValue="five" option="MESA 5" />
+                <SelectOption optionValue="1" option="MESA 1" />
+                <SelectOption optionValue="2" option="MESA 2" />
+                <SelectOption optionValue="3" option="MESA 3" />
+                <SelectOption optionValue="4" option="MESA 4" />
+                <SelectOption optionValue="5" option="MESA 5" />
               </>
             }
           />
@@ -184,7 +185,7 @@ export default function Demand() {
               );
             })}
         </table>
-        <ButtonOption
+        {/* <ButtonOption
           btnId="takeNote"
           btnClassName="takeNoteButton"
           option="adicionar observação"
@@ -195,7 +196,7 @@ export default function Demand() {
             closeNote={() => setClickNote("")}
             saveNote={(event) => setObs(event.target.value)}
           />
-        )}
+        )} */}
         <div className="buttonsDemand">
           <ButtonBack
             btnClass="btnBack salonBack"
@@ -211,15 +212,16 @@ export default function Demand() {
                 tableOption === "qual o número da mesa?"
               ) {
                 setTableOption("Preencha o número da mesa.");
-              } else {    
+              } else {
                 const filterQtd = cart.filter((product) => {
-                  if (product.qtd > "0"){
-                   return true
-                  } 
-                  else{ return false}
-                })
-                setCart(filterQtd)     
-                setSeeReceipt("clickReceipt"); 
+                  if (product.qtd > "0") {
+                    return true;
+                  } else {
+                    return false;
+                  }
+                });
+                setCart(filterQtd);
+                setSeeReceipt("clickReceipt");
               }
             }}
           />
@@ -227,7 +229,9 @@ export default function Demand() {
             <Receipt
               arrCart={cart}
               btnCancel={() => setSeeReceipt("")}
-              btnConfirm={() =>  NewOrder()}
+              btnConfirm={() => {
+                NewOrder(userToken, userEmail, table, cart)
+              }}
             />
           )}
         </div>
@@ -237,4 +241,6 @@ export default function Demand() {
 }
 
 // issues: [{number: 1, problem: "depois de selecionar item, se trocar de menu (ex café para bebidas")
-// e voltar para o primeiro (menu cafe) o placeholder aparece e não o valor que havia selecionado antes}]
+// e voltar para o primeiro (menu cafe) o placeholder aparece e não o valor que havia selecionado antes"},
+//{number: 2, problem: "salvar a obersação forneceida pelo usuario e enviar para cozinha, junto do pedido"},
+//          ]

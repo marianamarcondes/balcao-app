@@ -13,7 +13,7 @@
 .headerDemand {
   width: 100%;
   margin-bottom: 2%;
-  display: flex; 
+  display: flex;
   flex-flow: column nowrap;
   align-items: center;
 }
@@ -77,7 +77,7 @@
   background-size: 33px;
 }
 
-.menuTable{
+.menuTable {
   width: 100%;
 }
 .itemsMenu {
@@ -86,7 +86,7 @@
   flex-flow: row nowrap;
   align-items: center;
   margin: 3%;
-} 
+}
 .amount {
   width: 17%;
   text-align: center;
@@ -116,7 +116,7 @@
 .itemsSelected {
   width: 100%;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: column nowrap;
   margin: 20% 5%;
 }
 .amountSelected {
@@ -132,7 +132,7 @@
   background: url("../img/note.svg") no-repeat var(--light-blue);
   background-size: 23%;
   border-radius: 0;
-  display: flex; 
+  display: flex;
   align-items: center;
   justify-content: flex-end;
   width: 25%;
@@ -154,14 +154,14 @@
   width: 20%;
   padding: 1%;
 }
-.burgerOption{
+.burgerOption {
   font-size: 30px;
   font-weight: 700;
   color: var(--normal-blue);
   padding-left: 30px;
-} 
+}
 
-.inputNote{
+.inputNote {
   width: 100%;
   height: 30vh;
   margin-top: 5%;
@@ -169,21 +169,23 @@
   resize: none;
   text-align: center;
 }
-.takeNoteButton:hover{
- background-color: var(--normal-blue);
+.takeNoteButton:hover {
+  background-color: var(--normal-blue);
 }
-.saveNote{
+.saveNote {
   background-color: var(--green-green);
 }
-.itemReceipt{
-text-align: center;
+.itemReceipt {
+  font-size: 20px;
+  padding: 3px;
+  text-align: center;
 }
-.payment{
- border-bottom: solid 4px var(--light-blue);
+.payment {
+  border-bottom: solid 4px var(--light-blue);
 }
 
-@media (max-width: 800px){
-  .takeNoteButton{
+@media (max-width: 800px) {
+  .takeNoteButton {
     background-size: 19%;
     width: 35%;
   }
