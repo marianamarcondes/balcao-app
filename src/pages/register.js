@@ -1,5 +1,5 @@
 import "../css/register.css";
-import { React,  useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { Select, SelectOption } from "../components/select";
 import { InputGlobal } from "../components/inputs";
@@ -14,12 +14,14 @@ export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [workerFile, setWorkerFile] = useState({});
-  
+
   const [selectRegister, setSelecRegister] = useState("selecione o cargo");
-  const [namePlaceholder, setNamePlaceholder] = useState("João da Silva Santos");
+  const [namePlaceholder, setNamePlaceholder] = useState(
+    "João da Silva Santos"
+  );
   const [emailPlaceholder, setEmailPlaceholder] = useState("exemplo@email.com");
   useEffect(() => {
-    setWorkerFile({occupation, name, email, tempPassword});
+    setWorkerFile({ occupation, name, email, tempPassword });
   }, [occupation, name, email]);
 
   return (
@@ -42,8 +44,8 @@ export default function Register() {
                 optionValue="tag"
                 option={selectRegister}
               />
-              <SelectOption optionValue="waiter" option="Garçom/Garçonete" />
-              <SelectOption optionValue="chef" option="Chef de cozinha" />
+              <SelectOption optionValue="salon" option="Garçom/Garçonete" />
+              <SelectOption optionValue="kitchen" option="Chef de cozinha" />
             </>
           }
         />
@@ -84,17 +86,22 @@ export default function Register() {
             btnClassName="btnConfirm registerAdd"
             btnText="CONFIRMAR"
             btnAction={() => {
-              if (occupation === "" || occupation === null){
-                setSelecRegister("Por favor, insira o cargo.")
+              console.log(occupation, name, email)
+              if (occupation === "" || occupation === null) {
+                setSelecRegister("Por favor, insira o cargo.");
+                console.log("pegou no botao 1")
               }
-              if (name === "" || name === null || name.length > 8){
-                setNamePlaceholder("Por favor, insira o nome completo.")
+              if (name === "" || name === null || name.length < 8) {
+                setNamePlaceholder("Por favor, insira o nome completo.");
+                console.log("pegou no botao 2")
               }
-              if(email === "" || email === null || email.length > 5 ){
-                setEmailPlaceholder("Por favor, insira um email válido.")
+              if (email === "" || email === null || email.length < 5) {
+                setEmailPlaceholder("Por favor, insira um email válido.");
+                console.log("pegou no botao 3")
+              } else {
+                RegisterWorker(workerFile);
+                console.log("pegou no botao 4")
               }
-              else {
-              RegisterWorker(workerFile)}
             }}
           />
         </div>

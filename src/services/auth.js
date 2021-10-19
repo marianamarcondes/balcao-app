@@ -1,5 +1,5 @@
 import { Navigator } from "../router/navigator";
-import { refreshPage } from "../utils/simpleFunc";
+
 
 export const RegisterWorker = async (workerFile) => {
   try {
@@ -19,8 +19,9 @@ export const RegisterWorker = async (workerFile) => {
     const email = json.email;
     localStorage.setItem("workerToken", token);
     localStorage.setItem("workerEmail", email);
-    if (token) {
-      refreshPage();
+    if (json) {
+      window.location.reload()
+      console.log("cadastrou")
     }
   } catch (json) {
     const code = json.code;

@@ -230,6 +230,8 @@ export default function Demand() {
               arrCart={cart}
               btnCancel={() => setSeeReceipt("")}
               btnConfirm={() => {
+               console.log(userToken, userEmail)
+               console.log(table, cart)
                 NewOrder(userToken, userEmail, table, cart)
               }}
             />

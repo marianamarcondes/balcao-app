@@ -43,8 +43,8 @@ export default function Login() {
                 optionValue="tag"
                 option={selection}
               />
-              <SelectOption optionValue="waiter" option="Garçom/Garçonete" />
-              <SelectOption optionValue="chef" option="Chef de cozinha" />
+              <SelectOption optionValue="salon" option="Garçom/Garçonete" />
+              <SelectOption optionValue="kitchen" option="Chef de cozinha" />
               <SelectOption optionValue="admin" option="Admin." />
             </>
           }
