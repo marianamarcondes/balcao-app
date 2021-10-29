@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { ButtonBack, ButtonConfirm, ButtonOption } from "../components/buttons";
 import { Navigator } from "../router/navigator";
 import { useHistory } from "react-router";
-import { GetProducts, NewOrder } from "../services/data";
+import { GetProducts, NewOrder} from "../services/data";
 import { ItemsSalon, ItemBurger } from "../components/products";
 import { Receipt } from "../components/popups";
 
@@ -46,10 +46,10 @@ export default function Demand() {
     const findItem = cart.find((elemento) => elemento.id === item.id);
     const indexItem = cart.indexOf(findItem);
     if (findItem) {
-      cart[indexItem].qtd = event.target.value;
+      cart[indexItem].qtd = Number(event.target.value);
       setCart([...cart]);
     } else {
-      item.qtd = event.target.value;
+      item.qtd = Number(event.target.value);
       setCart([...cart, item]);
     }
   };
@@ -230,9 +230,7 @@ export default function Demand() {
               arrCart={cart}
               btnCancel={() => setSeeReceipt("")}
               btnConfirm={() => {
-               console.log(userToken, userEmail)
-               console.log(table, cart)
-                NewOrder(userToken, userEmail, table, cart)
+                NewOrder(userToken, userEmail, table, cart).then(() => Navigator(history, "/home"))
               }}
             />
           )}

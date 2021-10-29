@@ -1,6 +1,9 @@
+let url = "https://lab-api-bq.herokuapp.com/orders/";
+let urlProducts = "https://lab-api-bq.herokuapp.com/products";
+
 export const GetProducts = async (token) => {
-  try {                                                          //endpoint//
-    const response = await fetch("https://lab-api-bq.herokuapp.com/products", {
+  try {
+    const response = await fetch(urlProducts, {
       method: "GET",
       headers: {
         accept: "application/json",
@@ -19,27 +22,18 @@ export const GetProducts = async (token) => {
 
 export const NewOrder = async (token, email, table, products) => {
   try {
-    const response = await fetch("https://lab-api-bq.herokuapp.com/orders", {
+    const order = await fetch(url, {
       method: "POST",
       headers: {
-        accept: "application/json",
+        "Content-Type": "application/json",
         Authorization: token,
       },
       body: JSON.stringify({
-          "client": "string",
-          "table": "2",
-          "products": [
-            {
-              "id": 31,
-              "qtd": 2
-            }
-          ]
-        // client: email,
-        // table: table,
-        // products: [{ id: 33, qtd: 3}],
+        client: email,
+        table: table,
+        products: products,
       }),
     });
-    const order = response.json();
     return order;
   } catch (json) {
     const code = json.code;
@@ -49,16 +43,17 @@ export const NewOrder = async (token, email, table, products) => {
   }
 };
 
-export const getOrders = async (token) => {
+export const GetOrders = async (token) => {
   try {
-    const response = await fetch("https://lab-api-bq.herokuapp.com/orders", {
+    const response = await fetch(url, {
       method: "GET",
       headers: {
         accept: "application/json",
         Authorization: token,
       },
     });
-    return response;
+    const orders = response.json();
+    return orders;
   } catch (json) {
     const code = json.code;
     if (code !== 200) {
@@ -66,3 +61,4 @@ export const getOrders = async (token) => {
     }
   }
 };
+

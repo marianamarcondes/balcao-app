@@ -1,6 +1,4 @@
 import { React } from "react";
-import iconTime from "../img/icon-time.svg";
-import { ButtonDrop } from "./buttons";
 import { InputGlobal } from "./inputs";
 
 export function ItemsSalon({
@@ -66,21 +64,4 @@ export function ItemBurger({
     </>
   );
 }
-export function ItemTable({ orderTime, table, classBtnDrop, btnDropAction }) {
-  return (
-    <div className="itemsTable">
-      <div className="orderTime">
-        <img src={iconTime} alt="Horário que o pedido foi feito" />
-        <p>{orderTime}</p>
-      </div>
-      <p className="numberTable">{table}</p>
-      <ButtonDrop
-        btnId={"btnDrop"}
-        btnClassName={classBtnDrop}
-        btnType={"button"}
-        btnAction={btnDropAction}
-        ClassImgBtnDrop={"imgDropButton"}
-      />
-    </div>
-  );
-}
+

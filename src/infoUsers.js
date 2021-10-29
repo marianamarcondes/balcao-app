@@ -11,16 +11,16 @@ const userAdmin = {
 }
 console.log(userAdmin.role)
 
-const mariSalon = {
-  "email": "marisalon@email.com",
-  "pass": "424434"
+const testeGarcom = {
+  "email": "garcom@email.com",
+  "pass": "131504"
 }
 
-console.log(mariSalon)
+console.log(testeGarcom)
 
-const mariKitchen = {
-  "email": "marikitchen@email.com",
-  "pass": "324734"
+const testeKitchen = {
+  "email": "chef@email.com",
+  "pass": "035401"
 }
 
-console.log(mariKitchen)
+console.log(testeKitchen)

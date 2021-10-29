@@ -1,6 +1,5 @@
 import React from "react";
 import { ButtonConfirm, ButtonCancel } from "./buttons";
-// import { InputGlobal } from "./inputs";
 
 export function Receipt({ arrCart, btnCancel, btnConfirm }) {
   const calcTotal = (array) => {
@@ -47,22 +46,6 @@ export function Receipt({ arrCart, btnCancel, btnConfirm }) {
     </div>
   );
 }
-export const DropMenuKitchen = (qtdItem, nameItem, deliver) => {
-  return (
-    <>
-      <div className="orderKitchen">
-        <p>
-          {qtdItem}x {nameItem}
-        </p>
-        <ButtonConfirm
-          btnClassName="finishedOrder"
-          btnText="pedido finalizado"
-          btnAction={deliver}
-        />
-      </div>
-    </>
-  );
-};
 
 // export const PopUpWelcome = () => {
 //   return (

@@ -1,7 +1,3 @@
-import {React, useState} from "react";
-import abrirSelecaoAzul from "../img/abrir-selecao-azul.png"
-import fecharSelecaoAzul from "../img/fechar-selecao-azul.png"
-
 export function ButtonCancel({ btnClassName, btnAction, btnText }) {
   return (
     <button
@@ -36,39 +32,9 @@ export function ButtonBack({ btnClass, btnAction }) {
   );
 }
 
-export function ButtonDrop({
-  btnId,
-  btnClassName,
-  btnType,
-  btnAction,
-  ClassImgBtnDrop}) {
-
-  const [drop, setDrop] = useState(abrirSelecaoAzul);
-
-  const ShowItems = () => {
-   if (drop === abrirSelecaoAzul){
-     setDrop(fecharSelecaoAzul);
-   }
-   else {
-    setDrop(abrirSelecaoAzul);
-    }
-  };
+export function ButtonOption({ btnClassName, option, btnAction }) {
   return (
     <button
-      id={btnId}
-      className={btnClassName}
-      type={btnType}
-      onClick={btnAction}
-    >
-      <img onClick={ShowItems} className={ClassImgBtnDrop} src={drop} alt="Botão de Exibição" />
-    </button>
-  );
-}
-
-export function ButtonOption({ btnId, btnClassName, option, btnAction }) {
-  return (
-    <button
-      id={btnId}
       className={btnClassName}
       type="button"
       onClick={btnAction}
